@@ -61,7 +61,7 @@ public class User {
      *  Document code
      */
     @Column(name = "doc_code")
-    private String docCode;
+    private int docCode;
 
     /**
      *  Document name
@@ -193,14 +193,14 @@ public class User {
      *  Getter for {@link #docCode}
      *  @return User document code
      */
-    public String getDocCode() {
+    public int getDocCode() {
         return docCode;
     }
 
     /**
      *  Setter for {@link #docCode}
      */
-    public void setDocCode(String docCode) {
+    public void setDocCode(int docCode) {
         this.docCode = docCode;
     }
 
