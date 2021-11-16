@@ -25,37 +25,37 @@ public class Organization {
     /**
      *  Name
      */
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     /**
      *  Full name
      */
-    @Column(name = "full_name", nullable = false)
+    @Column(name = "full_name", length = 50, nullable = false)
     private String fullName;
 
     /**
      *  Number of INN
      */
-    @Column(name = "inn", nullable = false)
+    @Column(name = "inn", length = 12, nullable = false)
     private String inn;
 
     /**
      *  Number of KPP
      */
-    @Column(name = "kpp", nullable = false)
+    @Column(name = "kpp", length = 9, nullable = false)
     private String kpp;
 
     /**
      *  Address
      */
-    @Column(name = "address", nullable = false)
+    @Column(name = "address", length = 50, nullable = false)
     private String address;
 
     /**
      *  Phone number
      */
-    @Column(name = "phone")
+    @Column(name = "phone", length = 30)
     private String phone;
 
     /**

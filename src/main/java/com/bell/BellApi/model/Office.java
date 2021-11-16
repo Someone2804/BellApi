@@ -29,19 +29,19 @@ public class Office {
     /**
      *  Name
      */
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     /**
      *  Address
      */
-    @Column(name = "address", nullable = false)
+    @Column(name = "address", length = 50, nullable = false)
     private String address;
 
     /**
      *  Phone number
      */
-    @Column(name = "phone")
+    @Column(name = "phone", length = 30)
     private String phone;
 
     /**
@@ -58,6 +58,7 @@ public class Office {
 
     /**
      *  Getter for {@link #id}
+     *  @return
      */
     public Long getId() {
         return id;
@@ -72,6 +73,7 @@ public class Office {
 
     /**
      *  Getter for {@link #name}
+     *  @return
      */
     public String getName() {
         return name;
@@ -86,6 +88,7 @@ public class Office {
 
     /**
      *  Getter for {@link #address}
+     *  @return
      */
     public String getAddress() {
         return address;
@@ -100,6 +103,7 @@ public class Office {
 
     /**
      *  Getter for {@link #phone}
+     *  @return
      */
     public String getPhone() {
         return phone;
@@ -114,6 +118,7 @@ public class Office {
 
     /**
      *  Getter for {@link #isActive}
+     *  @return
      */
     public boolean isActive() {
         return isActive;

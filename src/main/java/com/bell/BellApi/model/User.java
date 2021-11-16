@@ -30,19 +30,19 @@ public class User {
     /**
      *  First name
      */
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
     /**
      *  Second name
      */
-    @Column(name = "second_name")
+    @Column(name = "second_name", length = 50)
     private String secondName;
 
     /**
      *  Middle name
      */
-    @Column(name = "middle_name")
+    @Column(name = "middle_name", length = 50)
     private String middleName;
 
     /**
@@ -54,7 +54,7 @@ public class User {
     /**
      *  Phone number
      */
-    @Column(name = "phone")
+    @Column(name = "phone", length = 30)
     private String phone;
 
     /**
@@ -101,6 +101,7 @@ public class User {
 
     /**
      * Getter for {@link #id}
+     * @return
      */
     public Long getId() {
         return id;
@@ -115,6 +116,7 @@ public class User {
 
     /**
      *  Getter for {@link #firstName}
+     *  @return
      */
     public String getFirstName() {
         return firstName;
@@ -129,6 +131,7 @@ public class User {
 
     /**
      *  Getter for {@link #secondName}
+     *  @return
      */
     public String getSecondName() {
         return secondName;
@@ -143,6 +146,7 @@ public class User {
 
     /**
      *  Getter for {@link #middleName}
+     *  @return
      */
     public String getMiddleName() {
         return middleName;
@@ -157,6 +161,7 @@ public class User {
 
     /**
      *  Getter for {@link #position}
+     *  @return
      */
     public String getPosition() {
         return position;
@@ -171,6 +176,7 @@ public class User {
 
     /**
      *  Getter for {@link #phone}
+     *  @return
      */
     public String getPhone() {
         return phone;
@@ -185,6 +191,7 @@ public class User {
 
     /**
      *  Getter for {@link #docCode}
+     *  @return
      */
     public String getDocCode() {
         return docCode;
@@ -199,6 +206,7 @@ public class User {
 
     /**
      *  Getter for {@link #docName}
+     *  @return
      */
     public String getDocName() {
         return docName;
@@ -213,6 +221,7 @@ public class User {
 
     /**
      *  Getter for {@link #docNumber}
+     *  @return
      */
     public String getDocNumber() {
         return docNumber;
@@ -227,6 +236,7 @@ public class User {
 
     /**
      *  Getter for {@link #docDate}
+     *  @return
      */
     public Date getDocDate() {
         return docDate;
@@ -241,6 +251,7 @@ public class User {
 
     /**
      *  Getter for {@link #citizenshipCode}
+     *  @return
      */
     public String getCitizenshipCode() {
         return citizenshipCode;
@@ -255,6 +266,7 @@ public class User {
 
     /**
      *  Getter for {@link #isIdentified}
+     *  @return
      */
     public boolean isIdentified() {
         return isIdentified;
