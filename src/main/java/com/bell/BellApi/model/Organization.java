@@ -72,6 +72,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #id}
+     *  @return Organization id
      */
     public Long getId() {
         return id;
@@ -86,7 +87,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #name}
-     *  @return
+     *  @return Organization short name
      */
     public String getName() {
         return name;
@@ -101,7 +102,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #fullName}
-     *  @return
+     *  @return Organization full name
      */
     public String getFullName() {
         return fullName;
@@ -116,7 +117,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #inn}
-     *  @return
+     *  @return Organization inn
      */
     public String getInn() {
         return inn;
@@ -131,7 +132,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #kpp}
-     *  @return
+     *  @return Organization kpp
      */
     public String getKpp() {
         return kpp;
@@ -146,7 +147,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #address}
-     *  @return
+     *  @return Organization address
      */
     public String getAddress() {
         return address;
@@ -161,7 +162,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #phone}
-     *  @return
+     *  @return Organization phone number
      */
     public String getPhone() {
         return phone;
@@ -176,7 +177,7 @@ public class Organization {
 
     /**
      *  Getter for {@link #isActive}
-     *  @return
+     *  @return true if Organization is active
      */
     public boolean isActive() {
         return isActive;

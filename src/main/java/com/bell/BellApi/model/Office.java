@@ -58,7 +58,7 @@ public class Office {
 
     /**
      *  Getter for {@link #id}
-     *  @return
+     *  @return Office id
      */
     public Long getId() {
         return id;
@@ -73,7 +73,7 @@ public class Office {
 
     /**
      *  Getter for {@link #name}
-     *  @return
+     *  @return Office name
      */
     public String getName() {
         return name;
@@ -88,7 +88,7 @@ public class Office {
 
     /**
      *  Getter for {@link #address}
-     *  @return
+     *  @return Office address
      */
     public String getAddress() {
         return address;
@@ -103,7 +103,7 @@ public class Office {
 
     /**
      *  Getter for {@link #phone}
-     *  @return
+     *  @return Office phone number
      */
     public String getPhone() {
         return phone;
@@ -118,7 +118,7 @@ public class Office {
 
     /**
      *  Getter for {@link #isActive}
-     *  @return
+     *  @return true if office is active
      */
     public boolean isActive() {
         return isActive;
