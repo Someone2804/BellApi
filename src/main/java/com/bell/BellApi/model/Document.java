@@ -40,7 +40,7 @@ public class Document {
     private Date docDate;
 
     @ManyToOne
-    @JoinColumn(name = "document_name_id", nullable = false)
+    @JoinColumn(name = "doc_name_id", nullable = false)
     private DocName documentName;
 
     /**
