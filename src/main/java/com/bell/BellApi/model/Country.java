@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Country")
@@ -42,7 +42,7 @@ public class Country {
      *  Documents belonging to this citizenship
      */
     @OneToMany(mappedBy = "citizenship")
-    private List<Document> documents;
+    private Set<User> users;
 
     /**
      *  Constructor for Hibernate
@@ -81,21 +81,21 @@ public class Country {
     }
 
     /**
-     *  Getter for {@link #documents}
+     *  Getter for {@link #users}
      *  @return documents
      */
-    public List<Document> getDocuments() {
-        if(this.documents == null){
-            this.documents = new ArrayList<>();
+    public Set<User> getUsers() {
+        if(this.users == null){
+            this.users = new HashSet<>();
         }
-        return documents;
+        return users;
     }
 
     /**
-     *  Add document in {@link #documents}
-     *  @param document
+     *  Add document in {@link #users}
+     *  @param user
      */
-    public void addDocument(Document document) {
-        getDocuments().add(document);
+    public void addUser(User user) {
+        getUsers().add(user);
     }
 }

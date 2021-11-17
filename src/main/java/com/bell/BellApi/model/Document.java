@@ -26,19 +26,6 @@ public class Document {
     @Version
     private Integer version;
 
-
-    /**
-     *  Document code
-     */
-    @Column(name = "doc_code", length = 10, nullable = false)
-    private int docCode;
-
-    /**
-     *  Document name
-     */
-    @Column(name = "doc_name", length = 50, nullable = false)
-    private String docName;
-
     /**
      *  Document number
      */
@@ -51,12 +38,9 @@ public class Document {
     @Column(name = "doc_date", nullable = false)
     private Date docDate;
 
-    /**
-     *  Citizenship
-     */
     @ManyToOne
-    @JoinColumn(name = "citizenship_id", nullable = false)
-    private Country citizenship;
+    @JoinColumn(name = "document_name_id", nullable = false)
+    private DocName documentName;
 
     /**
      *  User
@@ -69,36 +53,6 @@ public class Document {
      *  Constructor for Hibernate
      */
     public Document() {
-    }
-
-    /**
-     *  Getter for {@link #docCode}
-     *  @return document code
-     */
-    public int getDocCode() {
-        return docCode;
-    }
-
-    /**
-     *  Setter for {@link #docCode}
-     */
-    public void setDocCode(int docCode) {
-        this.docCode = docCode;
-    }
-
-    /**
-     *  Getter for {@link #docName}
-     *  @return document name
-     */
-    public String getDocName() {
-        return docName;
-    }
-
-    /**
-     *  Setter for {@link #docName}
-     */
-    public void setDocName(String docName) {
-        this.docName = docName;
     }
 
     /**
@@ -129,20 +83,5 @@ public class Document {
      */
     public void setDocDate(Date docDate) {
         this.docDate = docDate;
-    }
-
-    /**
-     *  Getter for {@link #citizenship}
-     *  @return citizenship entity
-     */
-    public Country getCitizenship() {
-        return citizenship;
-    }
-
-    /**
-     *  Setter for {@link #citizenship}
-     */
-    public void setCitizenship(Country citizenship) {
-        this.citizenship = citizenship;
     }
 }

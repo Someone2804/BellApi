@@ -52,8 +52,9 @@ public class User {
     /**
      *  Position
      */
-    @Column(name = "usr_position", nullable = false)
-    private String position;
+    @ManyToOne
+    @JoinColumn(name = "position_id", nullable = false)
+    private Position position;
 
     /**
      *  Phone number
@@ -73,6 +74,13 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
+
+    /**
+     *  Citizenship
+     */
+    @ManyToOne
+    @JoinColumn(name = "citizenship_id", nullable = false)
+    private Country citizenship;
 
     /**
      *  Validation of documents
@@ -150,14 +158,14 @@ public class User {
      *  Getter for {@link #position}
      *  @return User position
      */
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
     /**
      *  Setter for {@link #position}
      */
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -193,6 +201,21 @@ public class User {
      */
     public void addDocument(Document document) {
         getDocument().add(document);
+    }
+
+    /**
+     *  Getter for {@link #citizenship}
+     *  @return citizenship entity
+     */
+    public Country getCitizenship() {
+        return citizenship;
+    }
+
+    /**
+     *  Setter for {@link #citizenship}
+     */
+    public void setCitizenship(Country citizenship) {
+        this.citizenship = citizenship;
     }
 
     /**
