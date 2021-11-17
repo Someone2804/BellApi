@@ -63,7 +63,6 @@ public class User {
     /**
      *  User document
      */
-    @Column(name = "document")
     @OneToMany
     private List<Document> document;
 

@@ -29,19 +29,18 @@ public class Country {
     /**
      * Citizenship name
      */
-    @Column(name = "citizenship_name", nullable = false)
+    @Column(name = "citizenship_name", length = 50, nullable = false)
     private String citizenshipName;
 
     /**
      *  Citizenship code
      */
-    @Column(name = "citizenship_code", nullable = false)
-    private String citizenshipCode;
+    @Column(name = "citizenship_code", length = 10, nullable = false)
+    private int citizenshipCode;
 
     /**
      *  Documents belonging to this citizenship
      */
-    @Column(name = "document", nullable = false)
     @OneToMany(mappedBy = "citizenship")
     private List<Document> documents;
 
@@ -70,14 +69,14 @@ public class Country {
      *  Getter for {@link #citizenshipCode}
      *  @return citizenship code
      */
-    public String getCitizenshipCode() {
+    public int getCitizenshipCode() {
         return citizenshipCode;
     }
 
     /**
      *  Setter for {@link #citizenshipCode}
      */
-    public void setCitizenshipCode(String citizenshipCode) {
+    public void setCitizenshipCode(int citizenshipCode) {
         this.citizenshipCode = citizenshipCode;
     }
 

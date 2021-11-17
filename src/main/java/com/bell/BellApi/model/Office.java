@@ -51,7 +51,6 @@ public class Office {
     /**
      *  Workers
      */
-    @Column(name = "workers")
     @OneToMany
     private Set<User> workers;
 

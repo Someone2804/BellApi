@@ -64,7 +64,6 @@ public class Organization {
     /**
      *  Organization offices
      */
-    @Column(name = "office", nullable = false)
     @OneToMany
     private Set<Office> offices;
 

@@ -30,19 +30,19 @@ public class Document {
     /**
      *  Document code
      */
-    @Column(name = "doc_code", nullable = false)
+    @Column(name = "doc_code", length = 10, nullable = false)
     private int docCode;
 
     /**
      *  Document name
      */
-    @Column(name = "doc_name", nullable = false)
+    @Column(name = "doc_name", length = 50, nullable = false)
     private String docName;
 
     /**
      *  Document number
      */
-    @Column(name = "doc_number", nullable = false)
+    @Column(name = "doc_number", length = 20, nullable = false)
     private String docNumber;
 
     /**
