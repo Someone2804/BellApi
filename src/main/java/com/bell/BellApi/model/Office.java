@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -43,6 +47,20 @@ public class Office {
      */
     @Column(name = "phone", length = 30)
     private String phone;
+
+    /**
+     *  Workers
+     */
+    @Column(name = "workers")
+    @OneToMany
+    private Set<User> workers;
+
+    /**
+     *  Organization
+     */
+    @Column(name = "organization")
+    @ManyToOne
+    private Organization organization;
 
     /**
      *  Is active
@@ -114,6 +132,40 @@ public class Office {
      */
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    /**
+     *  Getter for {@link #workers}
+     *  @return Office workers
+     */
+    public Set<User> getWorkers() {
+        if(this.workers == null){
+            this.workers = new HashSet<>();
+        }
+        return workers;
+    }
+
+    /**
+     * Add worker in {@link #workers}
+     * @param user
+     */
+    public void addWorkers(User user) {
+        getWorkers().add(user);
+    }
+
+    /**
+     *  Getter for {@link #organization}
+     *  @return organization
+     */
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    /**
+     *  Setter for {@link #organization}
+     */
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     /**

@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "organization")
@@ -57,6 +60,13 @@ public class Organization {
      */
     @Column(name = "phone", length = 30)
     private String phone;
+
+    /**
+     *  Organization offices
+     */
+    @Column(name = "office", nullable = false)
+    @OneToMany
+    private Set<Office> offices;
 
     /**
      *  Is active
@@ -173,6 +183,25 @@ public class Organization {
      */
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    /**
+     *  Getter for {@link #offices}
+     *  @return offices
+     */
+    public Set<Office> getOffices() {
+        if(this.offices == null){
+            this.offices = new HashSet<>();
+        }
+        return offices;
+    }
+
+    /**
+     *  Add office if {@link #offices}
+     *  @param office
+     */
+    public void addOffices(Office office) {
+        getOffices().add(office);
     }
 
     /**

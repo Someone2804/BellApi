@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -58,34 +61,18 @@ public class User {
     private String phone;
 
     /**
-     *  Document code
+     *  User document
      */
-    @Column(name = "doc_code")
-    private int docCode;
+    @Column(name = "document")
+    @OneToMany
+    private List<Document> document;
 
     /**
-     *  Document name
+     *  Office
      */
-    @Column(name = "doc_name")
-    private String docName;
-
-    /**
-     *  Document number
-     */
-    @Column(name = "doc_number")
-    private String docNumber;
-
-    /**
-     *  Document date
-     */
-    @Column(name = "doc_date")
-    private Date docDate;
-
-    /**
-     *  Citizenship code
-     */
-    @Column(name = "citizenship_code")
-    private String citizenshipCode;
+    @Column(name = "office")
+    @ManyToOne
+    private Office office;
 
     /**
      *  Validation of documents
@@ -190,78 +177,22 @@ public class User {
     }
 
     /**
-     *  Getter for {@link #docCode}
-     *  @return User document code
+     *  Getter for {@link #document}
+     *  @return User documents
      */
-    public int getDocCode() {
-        return docCode;
+    public List<Document> getDocument() {
+        if(this.document == null){
+            this.document = new ArrayList<>();
+        }
+        return document;
     }
 
     /**
-     *  Setter for {@link #docCode}
+     *  Add document in {@link #document}
+     *  @param document
      */
-    public void setDocCode(int docCode) {
-        this.docCode = docCode;
-    }
-
-    /**
-     *  Getter for {@link #docName}
-     *  @return User document name
-     */
-    public String getDocName() {
-        return docName;
-    }
-
-    /**
-     *  Setter for {@link #docName}
-     */
-    public void setDocName(String docName) {
-        this.docName = docName;
-    }
-
-    /**
-     *  Getter for {@link #docNumber}
-     *  @return User document number
-     */
-    public String getDocNumber() {
-        return docNumber;
-    }
-
-    /**
-     *  Setter for {@link #docNumber}
-     */
-    public void setDocNumber(String docNumber) {
-        this.docNumber = docNumber;
-    }
-
-    /**
-     *  Getter for {@link #docDate}
-     *  @return User document date
-     */
-    public Date getDocDate() {
-        return docDate;
-    }
-
-    /**
-     *  Setter for {@link #docDate}
-     */
-    public void setDocDate(Date docDate) {
-        this.docDate = docDate;
-    }
-
-    /**
-     *  Getter for {@link #citizenshipCode}
-     *  @return User citizenship code
-     */
-    public String getCitizenshipCode() {
-        return citizenshipCode;
-    }
-
-    /**
-     *  Setter for {@link #citizenshipCode}
-     */
-    public void setCitizenshipCode(String citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
+    public void addDocument(Document document) {
+        getDocument().add(document);
     }
 
     /**
@@ -277,5 +208,20 @@ public class User {
      */
     public void setIdentified(boolean identified) {
         isIdentified = identified;
+    }
+
+    /**
+     *  Getter for {@link #office}
+     *  @return office
+     */
+    public Office getOffice() {
+        return office;
+    }
+
+    /**
+     *  Setter for {@link #office}
+     */
+    public void setOffice(Office office) {
+        this.office = office;
     }
 }
