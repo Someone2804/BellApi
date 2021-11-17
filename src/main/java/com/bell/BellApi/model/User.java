@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.util.ArrayList;
@@ -65,8 +66,9 @@ public class User {
     /**
      *  User document
      */
-    @OneToMany
-    private List<Document> document;
+    @OneToOne
+    @JoinColumn(name = "document_id")
+    private Document document;
 
     /**
      *  Office
@@ -188,19 +190,15 @@ public class User {
      *  Getter for {@link #document}
      *  @return User documents
      */
-    public List<Document> getDocument() {
-        if(this.document == null){
-            this.document = new ArrayList<>();
-        }
+    public Document getDocument() {
         return document;
     }
 
     /**
-     *  Add document in {@link #document}
-     *  @param document
+     *  Setter for {@link #document}
      */
-    public void addDocument(Document document) {
-        getDocument().add(document);
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
     /**
