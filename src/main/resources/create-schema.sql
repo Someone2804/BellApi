@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS Office(
     office_name VARCHAR(50) NOT NULL,
     address VARCHAR(50) NOT NULL,
     phone VARCHAR(30),
+    is_active BIT(1) NOT NULL,
     organization_id INTEGER NOT NULL,
     FOREIGN KEY(organization_id) REFERENCES Organization(id)
 );
@@ -35,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Usr(
     middle_name VARCHAR(50),
     usr_position VARCHAR(50) NOT NULL,
     phone VARCHAR(30),
-    is_active BIT(1) NOT NULL,
+    is_identified BIT(1) NOT NULL,
     office_id INTEGER NOT NULL,
     FOREIGN KEY(office_id) REFERENCES Office(id)
 );
