@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "country")
+@Table(name = "Country")
 public class Country {
 
     @Id

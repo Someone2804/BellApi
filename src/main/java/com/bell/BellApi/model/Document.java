@@ -6,14 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.util.Date;
 
 @Entity
-@Table(name = "document")
+@Table(name = "Document")
 public class Document {
 
     @Id
@@ -54,12 +54,15 @@ public class Document {
     /**
      *  Citizenship
      */
-    @Column(name = "citizenship", nullable = false)
     @ManyToOne
+    @JoinColumn(name = "citizenship_id", nullable = false)
     private Country citizenship;
 
-    @Column(name = "usr", nullable = false)
+    /**
+     *  User
+     */
     @ManyToOne
+    @JoinColumn(name = "usr_id", nullable = false)
     private User user;
 
     /**

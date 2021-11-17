@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +18,7 @@ import java.util.List;
  * User
  */
 @Entity
-@Table(name = "usr")
+@Table(name = "Usr")
 public class User {
 
     @Id
@@ -51,7 +52,7 @@ public class User {
     /**
      *  Position
      */
-    @Column(name = "position", nullable = false)
+    @Column(name = "usr_position", nullable = false)
     private String position;
 
     /**
@@ -69,8 +70,8 @@ public class User {
     /**
      *  Office
      */
-    @Column(name = "office")
     @ManyToOne
+    @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
     /**

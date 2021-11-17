@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "organization")
+@Table(name = "Organization")
 public class Organization {
 
     @Id
@@ -28,7 +28,7 @@ public class Organization {
     /**
      *  Name
      */
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "short_name", length = 50, nullable = false)
     private String name;
 
     /**

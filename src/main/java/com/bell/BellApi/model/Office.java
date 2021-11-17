@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +18,7 @@ import java.util.Set;
  *  Office
  */
 @Entity
-@Table(name = "office")
+@Table(name = "Office")
 public class Office {
 
     @Id
@@ -33,7 +34,7 @@ public class Office {
     /**
      *  Name
      */
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "office_name", length = 50, nullable = false)
     private String name;
 
     /**
@@ -57,8 +58,8 @@ public class Office {
     /**
      *  Organization
      */
-    @Column(name = "organization")
     @ManyToOne
+    @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
     /**
