@@ -49,8 +49,7 @@ public class Document {
     /**
      *  User
      */
-    @OneToOne
-    @JoinColumn(name = "usr_id", nullable = false)
+    @OneToOne(mappedBy = "document")
     private User user;
 
 
