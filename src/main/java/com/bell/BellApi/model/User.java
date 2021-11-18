@@ -7,12 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -81,7 +78,7 @@ public class User {
      *  Citizenship
      */
     @ManyToOne
-    @JoinColumn(name = "citizenship_id", nullable = false)
+    @JoinColumn(name = "citizenship_id")
     private Country citizenship;
 
     /**
