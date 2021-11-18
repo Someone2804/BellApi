@@ -39,6 +39,9 @@ public class Document {
     @Column(name = "doc_date", nullable = false)
     private Date docDate;
 
+    /**
+     * Document name
+     */
     @ManyToOne
     @JoinColumn(name = "doc_name_id", nullable = false)
     private DocName documentName;
@@ -50,11 +53,6 @@ public class Document {
     @JoinColumn(name = "usr_id", nullable = false)
     private User user;
 
-    /**
-     *  Constructor for Hibernate
-     */
-    public Document() {
-    }
 
     /**
      *  Getter for {@link #docNumber}

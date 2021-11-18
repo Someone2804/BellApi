@@ -91,12 +91,6 @@ public class User {
     private boolean isIdentified;
 
     /**
-     *  Constructor for Hibernate
-     */
-    public User() {
-    }
-
-    /**
      * Getter for {@link #id}
      * @return User id
      */

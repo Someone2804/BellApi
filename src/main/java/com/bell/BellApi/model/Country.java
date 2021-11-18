@@ -44,11 +44,6 @@ public class Country {
     @OneToMany(mappedBy = "citizenship")
     private Set<User> users;
 
-    /**
-     *  Constructor for Hibernate
-     */
-    public Country() {
-    }
 
     /**
      *  Getter for {@link #citizenshipName}

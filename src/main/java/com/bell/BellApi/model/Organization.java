@@ -73,11 +73,6 @@ public class Organization {
     @Column(name = "is_active")
     private boolean isActive;
 
-    /**
-     * Constructor for Hibernate
-     */
-    public Organization() {
-    }
 
     /**
      *  Getter for {@link #id}

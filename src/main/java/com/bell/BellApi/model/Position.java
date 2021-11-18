@@ -40,12 +40,6 @@ public class Position {
     private Set<User> workers;
 
     /**
-     *  Constructor for Hibernate
-     */
-    public Position() {
-    }
-
-    /**
      * Getter for {@link #positionName}
      * @return position name
      */

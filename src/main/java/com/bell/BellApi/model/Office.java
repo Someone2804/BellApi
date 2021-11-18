@@ -68,11 +68,6 @@ public class Office {
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
-    /**
-     * Constructor for Hibernate
-     */
-    public Office() {
-    }
 
     /**
      *  Getter for {@link #id}

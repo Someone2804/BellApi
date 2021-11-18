@@ -37,6 +37,9 @@ public class DocName {
     @Column(name = "doc_name", length = 50, nullable = false)
     private String docName;
 
+    /**
+     *  Documents
+     */
     @OneToMany(mappedBy = "documentName")
     private Set<Document> documents;
 
