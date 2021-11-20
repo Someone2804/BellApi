@@ -1,11 +1,13 @@
 package com.bell.BellApi.model.User;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -35,7 +37,7 @@ public class Position {
     /**
      *  Workers
      */
-    @OneToMany(mappedBy = "position")
+    @ManyToMany(mappedBy = "position", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> workers;
 
     /**

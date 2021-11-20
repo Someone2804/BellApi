@@ -9,10 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -53,9 +57,12 @@ public class User {
     /**
      *  Position
      */
-    @ManyToOne
-    @JoinColumn(name = "position_id", nullable = false)
-    private Position position;
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "usr_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "position_id", nullable = false)
+    )
+    private Set<Position> position;
 
     /**
      *  Phone number
@@ -66,7 +73,7 @@ public class User {
     /**
      *  User document
      */
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "document_id")
     private Document document;
 
@@ -152,17 +159,21 @@ public class User {
 
     /**
      *  Getter for {@link #position}
-     *  @return User position
+     *  @return User positions
      */
-    public Position getPosition() {
+    public Set<Position> getPosition() {
+        if(this.position == null){
+            this.position = new HashSet<>();
+        }
         return position;
     }
 
     /**
-     *  Setter for {@link #position}
+     *  Add position in {@link #position}
+     *  @param position
      */
-    public void setPosition(Position position) {
-        this.position = position;
+    public void addPosition(Position position) {
+        getPosition().add(position);
     }
 
     /**
