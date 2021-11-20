@@ -1,5 +1,7 @@
-package com.bell.BellApi.model;
+package com.bell.BellApi.model.Document;
 
+
+import com.bell.BellApi.model.User.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +51,7 @@ public class Document {
     /**
      *  User
      */
-    @OneToOne(mappedBy = "document")
+    @OneToOne(mappedBy = "document", optional = false)
     private User user;
 
 

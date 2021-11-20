@@ -1,4 +1,4 @@
-package com.bell.BellApi.model;
+package com.bell.BellApi.model.User;
 
 
 import javax.persistence.Column;
