@@ -3,6 +3,7 @@ package com.bell.BellApi.model.User;
 import com.bell.BellApi.model.Document.Document;
 import com.bell.BellApi.model.Office.Office;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,7 +74,7 @@ public class User {
     /**
      *  User document
      */
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "document_id")
     private Document document;
 

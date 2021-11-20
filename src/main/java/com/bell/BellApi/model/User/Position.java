@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Worker_position")
+@Table(name = "Position")
 public class Position {
 
     @Id
