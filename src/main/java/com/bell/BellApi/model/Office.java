@@ -1,7 +1,7 @@
-package com.bell.BellApi.model.Office;
+package com.bell.BellApi.model;
 
-import com.bell.BellApi.model.Organization.Organization;
-import com.bell.BellApi.model.User.User;
+import com.bell.BellApi.model.Organization;
+import com.bell.BellApi.model.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

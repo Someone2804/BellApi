@@ -1,4 +1,4 @@
-package com.bell.BellApi.model.Document;
+package com.bell.BellApi.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

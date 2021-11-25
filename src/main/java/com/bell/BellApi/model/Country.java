@@ -1,7 +1,5 @@
-package com.bell.BellApi.model.User;
+package com.bell.BellApi.model;
 
-
-import com.bell.BellApi.model.User.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

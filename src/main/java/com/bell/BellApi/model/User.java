@@ -1,7 +1,4 @@
-package com.bell.BellApi.model.User;
-
-import com.bell.BellApi.model.Document.Document;
-import com.bell.BellApi.model.Office.Office;
+package com.bell.BellApi.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
