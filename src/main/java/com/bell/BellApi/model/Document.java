@@ -52,8 +52,23 @@ public class Document {
      */
     @OneToOne(mappedBy = "document", optional = false)
     @MapsId
+    @JoinColumn(name = "usr_id")
     private User user;
 
+    /**
+     *  Getter for {@link #id}
+     *  @return document id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     *  Setter for {@link #id}
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      *  Getter for {@link #docNumber}

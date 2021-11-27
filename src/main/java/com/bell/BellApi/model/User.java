@@ -53,6 +53,12 @@ public class User {
     private String middleName;
 
     /**
+     *  Phone number
+     */
+    @Column(name = "phone", length = 30)
+    private String phone;
+
+    /**
      *  Position
      */
     @ManyToMany
@@ -61,12 +67,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "position_id", nullable = false)
     )
     private Set<Position> position;
-
-    /**
-     *  Phone number
-     */
-    @Column(name = "phone", length = 30)
-    private String phone;
 
     /**
      *  User document

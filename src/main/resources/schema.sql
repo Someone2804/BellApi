@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Usr(
     FOREIGN KEY(office_id) REFERENCES Office(id)
 );
 
-CREATE TABLE IF NOT EXISTS DocName(
+CREATE TABLE IF NOT EXISTS Document_name(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
     doc_code INTEGER(10) NOT NULL,
@@ -63,7 +63,8 @@ CREATE TABLE IF NOT EXISTS Document(
     doc_date DATE NOT NULL,
     doc_name_id INTEGER NOT NULL,
     usr_id INTEGER NOT NULL,
-    FOREIGN KEY(doc_name_id) REFERENCES DocName(id)
+    FOREIGN KEY(doc_name_id) REFERENCES Document_name(id),
+    FOREIGN KEY(usr_id) REFERENCES Usr(id)
 );
 
 CREATE TABLE IF NOT EXISTS Usr_Position(
@@ -80,5 +81,4 @@ CREATE INDEX IX_Position_Usr_Id ON Usr_Position(usr_id);
 ALTER TABLE Usr_Position ADD FOREIGN KEY(position_id) REFERENCES Position(id);
 
 
-ALTER TABLE Usr ADD FOREIGN KEY(document_id) REFERENCES Document(id);
-ALTER TABLE Document ADD FOREIGN KEY(usr_id) REFERENCES Usr(id);
+ALTER TABLE Usr ADD FOREIGN KEY(document_id) REFERENCES Document(usr_id);
