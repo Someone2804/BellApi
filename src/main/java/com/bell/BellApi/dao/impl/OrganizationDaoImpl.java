@@ -4,7 +4,9 @@ import com.bell.BellApi.dao.OrganizationDao;
 import com.bell.BellApi.dao.impl.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,8 +32,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public List<Organization> getAll(OrgFilter filter) {
-        CriteriaQuery<Organization> org = buildCriteria(filter);
-        TypedQuery<Organization> organizations = entityManager.createQuery(org);
+        CriteriaQuery<Organization> cq = buildCriteria(filter);
+        TypedQuery<Organization> organizations = entityManager.createQuery(cq);
         return organizations.getResultList();
     }
 
@@ -52,22 +54,25 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     private CriteriaQuery<Organization> buildCriteria(OrgFilter filter){
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        List<Predicate> predicates = new ArrayList<>();
-
-        addPredicates(predicates, filter, builder);
-
-        return builder.createQuery(Organization.class)
-                .where(predicates.toArray(new Predicate[predicates.size()]));
+        CriteriaQuery<Organization> cq = builder.createQuery(Organization.class);
+        Root<Organization> root = cq.from(Organization.class);
+        return cq.select(root).where(addPredicates(filter).toPredicate(root, cq, builder));
     }
 
-    private void addPredicates(List<Predicate> predicates, OrgFilter filter, CriteriaBuilder builder){
-        CriteriaQuery<Organization> org = builder.createQuery(Organization.class);
-        Root<Organization> organizationRoot = org.from(Organization.class);
+    private Specification<Organization> addPredicates(OrgFilter filter){
+        List<Predicate> predicates = new ArrayList<>();
+        String inn = filter.getInn();
+        return (root, query, criteriaBuilder) -> {
 
-        if(!filter.getInn().isBlank()){
-            predicates.add(builder.equal(organizationRoot.get("inn"), filter.getInn()));
-        }
-        predicates.add(builder.equal(organizationRoot.get("name"), filter.getName()));
-        predicates.add(builder.equal(organizationRoot.get("isActive"), filter.isActive()));
+            if((inn != null) && (!inn.isBlank())) {
+                predicates.add(criteriaBuilder.equal(root.get("inn"), inn));
+            }
+            if(filter.isActive() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
+            }
+            predicates.add(criteriaBuilder.like(root.get("fullName"), "%" + filter.getName() + "%"));
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+        };
     }
 }

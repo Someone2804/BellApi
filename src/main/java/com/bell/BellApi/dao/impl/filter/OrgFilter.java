@@ -6,10 +6,12 @@ public class OrgFilter {
 
     private String inn;
 
-    private boolean isActive = true;
+    private Boolean isActive;
 
-    public OrgFilter(String name) {
+    public OrgFilter(String name, String inn, Boolean isActive) {
         this.name = name;
+        this.inn = inn;
+        this.isActive = isActive;
     }
 
     public String getName() {
@@ -24,11 +26,11 @@ public class OrgFilter {
         this.inn = inn;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 }
