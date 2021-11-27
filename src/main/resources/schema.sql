@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Country(
+CREATE TABLE IF NOT EXISTS Citizenship(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
     citizenship_name VARCHAR(50) NOT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS Usr(
     document_id INTEGER,
     citizenship_id INTEGER,
     office_id INTEGER NOT NULL,
-    FOREIGN KEY(citizenship_id) REFERENCES Country(id),
-    FOREIGN KEY(office_id) REFERENCES Office(id),
+    FOREIGN KEY(citizenship_id) REFERENCES Citizenship(id),
+    FOREIGN KEY(office_id) REFERENCES Office(id)
 );
 
 CREATE TABLE IF NOT EXISTS DocName(

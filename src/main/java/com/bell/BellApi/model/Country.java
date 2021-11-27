@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Country")
+@Table(name = "Citizenship")
 public class Country {
 
     @Id
@@ -43,7 +43,6 @@ public class Country {
      */
     @OneToMany(mappedBy = "citizenship")
     private Set<User> users;
-
 
     /**
      *  Getter for {@link #citizenshipName}
