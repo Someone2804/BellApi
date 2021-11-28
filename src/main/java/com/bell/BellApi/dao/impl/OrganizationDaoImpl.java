@@ -17,6 +17,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -38,8 +39,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public Organization getById(Long id) {
-        return entityManager.find(Organization.class, id);
+    public Optional<Organization> getById(Long id) {
+        return Optional.ofNullable(entityManager.find(Organization.class, id));
     }
 
     @Override

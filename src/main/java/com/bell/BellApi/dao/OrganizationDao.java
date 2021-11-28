@@ -4,10 +4,11 @@ import com.bell.BellApi.dao.impl.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrganizationDao {
     List<Organization> getAll(OrgFilter filter);
-    Organization getById(Long id);
+    Optional<Organization> getById(Long id);
     void save(Organization organization);
     void update(Organization organization);
 }
