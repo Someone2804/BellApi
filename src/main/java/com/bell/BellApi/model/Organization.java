@@ -73,6 +73,19 @@ public class Organization {
     @Column(name = "is_active")
     private boolean isActive;
 
+    public Organization() {
+    }
+
+    public Organization(Long id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
+    }
 
     /**
      *  Getter for {@link #id}
@@ -212,4 +225,5 @@ public class Organization {
     public void setActive(boolean active) {
         isActive = active;
     }
+
 }
