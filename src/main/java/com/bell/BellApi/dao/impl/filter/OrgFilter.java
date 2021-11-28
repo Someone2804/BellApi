@@ -33,4 +33,10 @@ public class OrgFilter {
     public void setActive(Boolean active) {
         isActive = active;
     }
+
+    public void validate(){
+        if(getName() == null || getName().isBlank()){
+            throw new IllegalStateException("Missed require parameter name");
+        }
+    }
 }
