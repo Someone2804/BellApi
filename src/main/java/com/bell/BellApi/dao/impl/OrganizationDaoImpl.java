@@ -6,7 +6,6 @@ import com.bell.BellApi.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -71,7 +70,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             if(filter.isActive() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
             }
-            predicates.add(criteriaBuilder.like(root.get("fullName"), "%" + filter.getName() + "%"));
+            predicates.add(criteriaBuilder.like(root.get("name"), "%" + filter.getName() + "%"));
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
