@@ -36,7 +36,7 @@ public class Country {
      *  Citizenship code
      */
     @Column(name = "citizenship_code", length = 10, nullable = false)
-    private int citizenshipCode;
+    private String citizenshipCode;
 
     /**
      *  Documents belonging to this citizenship
@@ -63,14 +63,14 @@ public class Country {
      *  Getter for {@link #citizenshipCode}
      *  @return citizenship code
      */
-    public int getCitizenshipCode() {
+    public String getCitizenshipCode() {
         return citizenshipCode;
     }
 
     /**
      *  Setter for {@link #citizenshipCode}
      */
-    public void setCitizenshipCode(int citizenshipCode) {
+    public void setCitizenshipCode(String citizenshipCode) {
         this.citizenshipCode = citizenshipCode;
     }
 

@@ -29,7 +29,7 @@ public class DocName {
      *  Document code
      */
     @Column(name = "doc_code", length = 10, nullable = false)
-    private int docCode;
+    private String docCode;
 
     /**
      *  Document name
@@ -47,14 +47,14 @@ public class DocName {
      *  Getter for {@link #docCode}
      *  @return document code
      */
-    public int getDocCode() {
+    public String getDocCode() {
         return docCode;
     }
 
     /**
      *  Setter for {@link #docCode}
      */
-    public void setDocCode(int docCode) {
+    public void setDocCode(String docCode) {
         this.docCode = docCode;
     }
 

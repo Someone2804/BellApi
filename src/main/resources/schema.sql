@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS Citizenship(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
     citizenship_name VARCHAR(50) NOT NULL,
-    citizenship_code INTEGER(10) NOT NULL
+    citizenship_code VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Organization(
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Usr(
 CREATE TABLE IF NOT EXISTS Document_name(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
-    doc_code INTEGER(10) NOT NULL,
+    doc_code VARCHAR(10) NOT NULL,
     doc_name VARCHAR(50) NOT NULL
 );
 
