@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS Usr(
     middle_name VARCHAR(50),
     phone VARCHAR(30),
     is_identified BIT(1) NOT NULL,
-    document_id INTEGER,
     citizenship_id INTEGER,
     office_id INTEGER NOT NULL,
     FOREIGN KEY(citizenship_id) REFERENCES Citizenship(id),
@@ -57,14 +56,14 @@ CREATE TABLE IF NOT EXISTS Document_name(
 );
 
 CREATE TABLE IF NOT EXISTS Document(
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY,
     version INTEGER NOT NULL,
     doc_number VARCHAR(20) NOT NULL,
     doc_date DATE NOT NULL,
-    doc_name_id INTEGER NOT NULL,
     usr_id INTEGER NOT NULL,
-    FOREIGN KEY(doc_name_id) REFERENCES Document_name(id),
-    FOREIGN KEY(usr_id) REFERENCES Usr(id)
+    doc_name_id INTEGER NOT NULL,
+    FOREIGN KEY(usr_id) REFERENCES Usr(id),
+    FOREIGN KEY(doc_name_id) REFERENCES Document_name(id)
 );
 
 CREATE TABLE IF NOT EXISTS Usr_Position(
@@ -79,6 +78,3 @@ ALTER TABLE Usr_Position ADD FOREIGN KEY(usr_id) REFERENCES Usr(id);
 
 CREATE INDEX IX_Position_Usr_Id ON Usr_Position(usr_id);
 ALTER TABLE Usr_Position ADD FOREIGN KEY(position_id) REFERENCES Position(id);
-
-
-ALTER TABLE Usr ADD FOREIGN KEY(document_id) REFERENCES Document(usr_id);
