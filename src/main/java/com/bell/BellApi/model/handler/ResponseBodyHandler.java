@@ -26,12 +26,11 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
 
-        ResponseDto responseDto = new ResponseDto();
-
         if(body instanceof ErrorResponse){
             return body;
         }
 
+        ResponseDto responseDto = new ResponseDto();
         if(body != null){
             responseDto.setBody(body);
         }else{
