@@ -32,23 +32,20 @@ public class TestController {
     }
 
     @PostMapping
-    public ResponseEntity<List<OrganizationDtoAll>> getAll(@RequestBody OrgFilter orgFilter){
+    public List<OrganizationDtoAll> getAll(@RequestBody OrgFilter orgFilter){
         List<OrganizationDtoAll> list = organizationService.getAll(orgFilter);
-        return ResponseEntity.ok(list);
+        return list;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrganizationDtoId> getById(@PathVariable Long id){
+    public OrganizationDtoId getById(@PathVariable Long id){
         OrganizationDtoId org = organizationService.getById(id);
-        return ResponseEntity.ok(org);
+        return org;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody OrganizationRequest organization){
+    public void add(@RequestBody OrganizationRequest organization){
         organizationService.add(organization);
-        Map<String, String> map = new HashMap<>();
-        map.put("result", "success");
-        return ResponseEntity.ok(map);
     }
 
 
