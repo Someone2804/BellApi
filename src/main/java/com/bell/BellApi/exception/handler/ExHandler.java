@@ -1,37 +1,47 @@
 package com.bell.BellApi.exception.handler;
 
 
+import com.bell.BellApi.dto.response.error.ErrorResponse;
 import com.bell.BellApi.exception.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ExHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(Logger.class);
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> unhandledException(Exception e){
+        ErrorResponse errorResponse = new ErrorResponse("Internal server error");
+        String code = UUID.randomUUID().toString();
+        errorResponse.setCode(code);
+        logger.error(code, e);
+        return ResponseEntity.internalServerError().body(errorResponse);
+    }
+
     @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public @ResponseBody
-    ResponseEntity<?> notFound(NotFoundException e){
-        Map<String, String> map = new HashMap<>();
-        map.put("error", "Not Found");
-        map.put("exception", e.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
+    public ResponseEntity<ErrorResponse> notFound(NotFoundException e){
+        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+        String code = UUID.randomUUID().toString();
+        errorResponse.setCode(code);
+        logger.error(code, e);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody
-    ResponseEntity<?> badRequest(IllegalStateException e){
-        Map<String, String> map = new HashMap<>();
-        map.put("error", "Bad Request");
-        map.put("exception", e.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
+    public ResponseEntity<ErrorResponse> badRequest(IllegalStateException e){
+        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+        String code = UUID.randomUUID().toString();
+        errorResponse.setCode(code);
+        logger.error(code, e);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }
