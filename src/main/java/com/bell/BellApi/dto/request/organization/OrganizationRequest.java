@@ -127,15 +127,15 @@ public class OrganizationRequest {
         }
     }
 
-    public Organization mapToEntity(){
-        return new Organization(getId(),
-                getName(),
-                getFullName(),
-                getInn(),
-                getKpp(),
-                getAddress(),
-                getPhone(),
-                isActive());
+    public static Organization mapToEntity(OrganizationRequest request){
+        return new Organization(request.getId(),
+                request.getName(),
+                request.getFullName(),
+                request.getInn(),
+                request.getKpp(),
+                request.getAddress(),
+                request.getPhone(),
+                request.isActive());
     }
 
     private static boolean isNullOrEmpty(String s){

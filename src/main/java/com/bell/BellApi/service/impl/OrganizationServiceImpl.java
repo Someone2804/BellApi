@@ -27,14 +27,14 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional
     public void add(OrganizationRequest organization) {
         organization.validateForSave();
-        organizationDao.save(organization.mapToEntity());
+        organizationDao.save(OrganizationRequest.mapToEntity(organization));
     }
 
     @Override
     @Transactional
     public void update(OrganizationRequest organization) {
         organization.validateForUpdate();
-        organizationDao.update(organization.mapToEntity());
+        organizationDao.update(OrganizationRequest.mapToEntity(organization));
     }
 
     @Override
