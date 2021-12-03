@@ -1,6 +1,6 @@
 package com.bell.BellApi.dao;
 
-import com.bell.BellApi.dao.impl.filter.OrgFilter;
+import com.bell.BellApi.dao.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 
 import java.util.List;

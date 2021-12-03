@@ -1,4 +1,4 @@
-package com.bell.BellApi.dao.impl.filter;
+package com.bell.BellApi.dao.filter;
 
 public class OrgFilter {
 

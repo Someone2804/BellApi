@@ -1,4 +1,4 @@
-package com.bell.BellApi.model.handler;
+package com.bell.BellApi.controller.handler;
 
 import com.bell.BellApi.dto.response.ResponseDto;
 import com.bell.BellApi.dto.response.error.ErrorResponse;

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class OfficeDaoImpl implements OfficeDao {
@@ -28,8 +29,8 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public Office getById(Long id) {
-        return entityManager.find(Office.class, id);
+    public Optional<Office> getById(Long id) {
+        return Optional.ofNullable(entityManager.find(Office.class, id));
     }
 
     @Override

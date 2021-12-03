@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.UUID;
@@ -16,14 +15,14 @@ import java.util.UUID;
 @RestControllerAdvice
 public class ExHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(Logger.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Logger.class);
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> unhandledException(Exception e){
         ErrorResponse errorResponse = new ErrorResponse("Internal server error");
         String code = UUID.randomUUID().toString();
         errorResponse.setCode(code);
-        logger.error(code, e);
+        LOGGER.error(code, e);
         return ResponseEntity.internalServerError().body(errorResponse);
     }
 
@@ -32,7 +31,7 @@ public class ExHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         String code = UUID.randomUUID().toString();
         errorResponse.setCode(code);
-        logger.error(code, e);
+        LOGGER.error(code, e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
@@ -41,7 +40,7 @@ public class ExHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         String code = UUID.randomUUID().toString();
         errorResponse.setCode(code);
-        logger.error(code, e);
+        LOGGER.error(code, e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }

@@ -1,7 +1,7 @@
 package com.bell.BellApi.dao.impl;
 
 import com.bell.BellApi.dao.OrganizationDao;
-import com.bell.BellApi.dao.impl.filter.OrgFilter;
+import com.bell.BellApi.dao.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
