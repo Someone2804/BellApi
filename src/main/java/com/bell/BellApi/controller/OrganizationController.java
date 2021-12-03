@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("api/organization")
+public class OrganizationController {
 
     private OrganizationService organizationService;
 
     @Autowired
-    public TestController(OrganizationService organizationService) {
+    public OrganizationController(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
 
-    @PostMapping
+    @PostMapping("/list")
     public List<OrganizationDtoAll> getAll(@RequestBody OrgFilter orgFilter){
         List<OrganizationDtoAll> list = organizationService.getAll(orgFilter);
         return list;
@@ -44,5 +44,8 @@ public class TestController {
     }
 
 
-
+    @PostMapping("/update")
+    public void update(@RequestBody OrganizationRequest organization){
+        organizationService.update(organization);
+    }
 }
