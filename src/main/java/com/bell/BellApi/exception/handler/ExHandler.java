@@ -31,7 +31,7 @@ public class ExHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         String code = UUID.randomUUID().toString();
         errorResponse.setCode(code);
-        LOGGER.error(code, e);
+        LOGGER.warn(code, e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
@@ -40,7 +40,7 @@ public class ExHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         String code = UUID.randomUUID().toString();
         errorResponse.setCode(code);
-        LOGGER.error(code, e);
+        LOGGER.warn(code, e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }
