@@ -32,9 +32,9 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
         ResponseDto responseDto = new ResponseDto();
         if(body != null){
-            responseDto.setBody(body);
+            responseDto.setData(body);
         }else{
-            responseDto.setBody("successes");
+            responseDto.setData("successes");
         }
 
         return responseDto;
