@@ -3,6 +3,7 @@ package com.bell.BellApi.dao.impl;
 import com.bell.BellApi.dao.OrganizationDao;
 import com.bell.BellApi.dao.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
@@ -49,7 +50,10 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void update(Organization organization) {
-        entityManager.merge(organization);
+        Organization fromdb = entityManager.find(Organization.class, organization.getId());
+        BeanUtils.copyProperties(organization, fromdb,
+                organization.getPhone() == null ? "phone" : null);
+
     }
 
     private CriteriaQuery<Organization> buildCriteria(OrgFilter filter){
