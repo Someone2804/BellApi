@@ -1,13 +1,13 @@
 package com.bell.BellApi.dto.response;
 
 public class ResponseDto {
-    private Object body;
+    private Object data;
 
-    public Object getBody() {
-        return body;
+    public Object getData() {
+        return data;
     }
 
-    public void setBody(Object body) {
-        this.body = body;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
