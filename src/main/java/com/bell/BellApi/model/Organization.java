@@ -215,7 +215,7 @@ public class Organization {
      *  Getter for {@link #isActive}
      *  @return true if Organization is active
      */
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
