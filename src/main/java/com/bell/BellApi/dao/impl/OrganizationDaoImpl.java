@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -51,6 +52,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
     @Override
     public void update(Organization organization) {
         Organization fromdb = entityManager.find(Organization.class, organization.getId());
+        if(fromdb == null){
+            throw new EntityNotFoundException("Cannot found organization with id " + organization.getId());
+        }
         BeanUtils.copyProperties(organization, fromdb,
                 organization.getPhone() == null ? "phone" : null,
                 organization.isActive() == null ? "isActive" : null);

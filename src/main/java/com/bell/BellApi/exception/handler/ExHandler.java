@@ -2,7 +2,6 @@ package com.bell.BellApi.exception.handler;
 
 
 import com.bell.BellApi.dto.response.error.ErrorResponse;
-import com.bell.BellApi.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
 @RestControllerAdvice
@@ -25,8 +25,8 @@ public class ExHandler {
         return ResponseEntity.internalServerError().body(errorResponse);
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> notFound(NotFoundException e){
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> notFound(EntityNotFoundException e){
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         mapError(errorResponse);
         LOGGER.warn(errorResponse.getCode(), e);
