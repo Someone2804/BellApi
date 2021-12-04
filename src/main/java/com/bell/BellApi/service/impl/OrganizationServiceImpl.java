@@ -38,18 +38,18 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDao.update(OrganizationRequest.mapToEntity(organization));
     }
 
-    @Transactional
     @Override
-    public List<OrganizationDtoAll> getAll(OrgFilter filter) {
-        filter.validate();
-        return OrganizationDtoAll.mapToDtoList(organizationDao.getAll(filter));
-    }
-
     @Transactional
-    @Override
     public OrganizationDtoId getById(Long id) {
         return OrganizationDtoId.mapToDto(organizationDao.getById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Organization with id " + id + " not found")));
+    }
+
+    @Override
+    @Transactional
+    public List<OrganizationDtoAll> getAll(OrgFilter filter) {
+        filter.validate();
+        return OrganizationDtoAll.mapToDtoList(organizationDao.getAll(filter));
     }
 
 
