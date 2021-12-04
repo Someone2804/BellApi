@@ -18,7 +18,7 @@ public class OrganizationRequest {
 
     private String phone;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     public Long getId() {
         return id;
@@ -80,7 +80,7 @@ public class OrganizationRequest {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
@@ -139,9 +139,6 @@ public class OrganizationRequest {
     }
 
     private static boolean isNullOrEmpty(String s){
-        if(s == null || s.isBlank()){
-            return true;
-        }
-        return false;
+        return s == null || s.isBlank();
     }
 }

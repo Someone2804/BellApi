@@ -52,7 +52,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public void update(Organization organization) {
         Organization fromdb = entityManager.find(Organization.class, organization.getId());
         BeanUtils.copyProperties(organization, fromdb,
-                organization.getPhone() == null ? "phone" : null);
+                organization.getPhone() == null ? "phone" : null,
+                organization.isActive() == null ? "isActive" : null);
 
     }
 
