@@ -20,27 +20,28 @@ public class ExHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> unhandledException(Exception e){
         ErrorResponse errorResponse = new ErrorResponse("Internal server error");
-        String code = UUID.randomUUID().toString();
-        errorResponse.setCode(code);
-        LOGGER.error(code, e);
+        mapError(errorResponse);
+        LOGGER.error(errorResponse.getCode(), e);
         return ResponseEntity.internalServerError().body(errorResponse);
     }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> notFound(NotFoundException e){
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
-        String code = UUID.randomUUID().toString();
-        errorResponse.setCode(code);
-        LOGGER.warn(code, e);
+        mapError(errorResponse);
+        LOGGER.warn(errorResponse.getCode(), e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<ErrorResponse> badRequest(IllegalStateException e){
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
-        String code = UUID.randomUUID().toString();
-        errorResponse.setCode(code);
-        LOGGER.warn(code, e);
+        mapError(errorResponse);
+        LOGGER.warn(errorResponse.getCode(), e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    private void mapError(ErrorResponse e){
+        e.setCode(UUID.randomUUID().toString());
     }
 }
