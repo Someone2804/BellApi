@@ -76,7 +76,7 @@ public class OrganizationRequest {
         this.phone = phone;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
