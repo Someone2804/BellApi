@@ -6,6 +6,7 @@ import com.bell.BellApi.model.Organization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -20,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
-@Repository
+@Component
 public class OrganizationDaoImpl implements OrganizationDao {
 
     @PersistenceContext
@@ -73,9 +73,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             if((inn != null) && (!inn.isBlank())) {
                 predicates.add(criteriaBuilder.equal(root.get("inn"), inn));
             }
-            if(filter.isActive() != null) {
-                predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
-            }
+            predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
             predicates.add(criteriaBuilder.like(root.get("name"), "%" + filter.getName() + "%"));
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));

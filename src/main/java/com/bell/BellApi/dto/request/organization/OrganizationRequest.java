@@ -18,7 +18,20 @@ public class OrganizationRequest {
 
     private String phone;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
+
+    public OrganizationRequest(Long id, String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+        this.phone = phone;
+        if(isActive != null) {
+            this.isActive = isActive;
+        }
+    }
 
     public Long getId() {
         return id;
