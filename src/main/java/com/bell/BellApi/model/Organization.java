@@ -71,12 +71,12 @@ public class Organization {
      *  Is active
      */
     @Column(name = "is_active")
-    private Boolean isActive;
+    private boolean isActive;
 
     public Organization() {
     }
 
-    public Organization(Long id, String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
+    public Organization(Long id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -215,14 +215,14 @@ public class Organization {
      *  Getter for {@link #isActive}
      *  @return true if Organization is active
      */
-    public Boolean isActive() {
+    public boolean isActive() {
         return isActive;
     }
 
     /**
      *  Setter for {@link #isActive}
      */
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 
