@@ -61,7 +61,7 @@ public class Office {
     /**
      *  Workers
      */
-    @OneToMany(mappedBy = "organization")
+    @OneToMany(mappedBy = "office")
     private Set<User> workers;
 
     /**
