@@ -2,6 +2,7 @@ package com.bell.BellApi.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,7 +65,7 @@ public class Organization {
     /**
      *  Organization offices
      */
-    @OneToMany
+    @OneToMany(mappedBy = "organization")
     private Set<Office> offices;
 
     /**

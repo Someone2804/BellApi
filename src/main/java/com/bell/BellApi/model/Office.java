@@ -1,7 +1,7 @@
 package com.bell.BellApi.model;
 
-import com.bell.BellApi.model.Organization;
-import com.bell.BellApi.model.User;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +22,12 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "Office")
+@NamedQueries({
+        @NamedQuery(
+        name = "Office.getById",
+        query = "select o from Office o WHERE id = :id"
+)
+})
 public class Office {
 
     @Id
@@ -55,7 +61,7 @@ public class Office {
     /**
      *  Workers
      */
-    @OneToMany
+    @OneToMany(mappedBy = "organization")
     private Set<User> workers;
 
     /**
