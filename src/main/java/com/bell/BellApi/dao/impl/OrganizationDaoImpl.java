@@ -72,7 +72,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
             if((inn != null) && (!inn.isBlank())) {
                 predicates.add(criteriaBuilder.equal(root.get("inn"), inn));
             }
-            predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
+            if(filter.isActive() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("isActive"), filter.isActive()));
+            }
             predicates.add(criteriaBuilder.like(root.get("name"), "%" + filter.getName() + "%"));
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
