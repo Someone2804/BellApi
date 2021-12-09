@@ -1,7 +1,7 @@
 package com.bell.BellApi.controller.handler;
 
-import com.bell.BellApi.dto.response.ResponseDto;
-import com.bell.BellApi.dto.response.error.ErrorResponse;
+import com.bell.BellApi.dto.ResponseDto;
+import com.bell.BellApi.dto.error.response.ErrorResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

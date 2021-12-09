@@ -1,4 +1,4 @@
-package com.bell.BellApi.dto.response.error;
+package com.bell.BellApi.dto.error.response;
 
 public class ErrorResponse {
     private String error;

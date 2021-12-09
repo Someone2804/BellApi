@@ -1,9 +1,9 @@
 package com.bell.BellApi.controller;
 
 import com.bell.BellApi.dao.filter.OrgFilter;
-import com.bell.BellApi.dto.request.organization.OrganizationRequest;
-import com.bell.BellApi.dto.response.organization.OrganizationDtoAll;
-import com.bell.BellApi.dto.response.organization.OrganizationDtoId;
+import com.bell.BellApi.dto.organization.request.OrganizationRequest;
+import com.bell.BellApi.dto.organization.response.OrganizationDtoAll;
+import com.bell.BellApi.dto.organization.response.OrganizationDtoId;
 import com.bell.BellApi.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

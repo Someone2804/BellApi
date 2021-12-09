@@ -1,4 +1,4 @@
-package com.bell.BellApi.dto.response;
+package com.bell.BellApi.dto;
 
 public class ResponseDto {
     private Object data;

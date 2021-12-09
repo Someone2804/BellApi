@@ -1,4 +1,4 @@
-package com.bell.BellApi.dto.request.organization;
+package com.bell.BellApi.dto.organization.request;
 
 import com.bell.BellApi.model.Organization;
 
