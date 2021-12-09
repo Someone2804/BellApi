@@ -24,8 +24,8 @@ import java.util.Set;
 @Table(name = "Office")
 @NamedQueries({
         @NamedQuery(
-        name = "Office.getById",
-        query = "select o from Office o WHERE id = :id"
+                name = "Office.getById",
+                query = "select o from Office o WHERE id = :id"
 )
 })
 public class Office {
@@ -75,7 +75,7 @@ public class Office {
      *  Is active
      */
     @Column(name = "is_active", nullable = false)
-    private boolean isActive;
+    private Boolean isActive;
 
 
     /**
@@ -176,14 +176,14 @@ public class Office {
      *  Getter for {@link #isActive}
      *  @return true if office is active
      */
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
     /**
      *  Setter for {@link #isActive}
      */
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 }
