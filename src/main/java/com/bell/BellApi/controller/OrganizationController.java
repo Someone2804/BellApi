@@ -1,6 +1,6 @@
 package com.bell.BellApi.controller;
 
-import com.bell.BellApi.dao.filter.OrgFilter;
+import com.bell.BellApi.dto.filter.OrgFilter;
 import com.bell.BellApi.dto.organization.request.OrganizationRequest;
 import com.bell.BellApi.dto.organization.response.OrganizationDtoAll;
 import com.bell.BellApi.dto.organization.response.OrganizationDtoId;

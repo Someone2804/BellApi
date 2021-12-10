@@ -1,6 +1,6 @@
 package com.bell.BellApi.dao;
 
-import com.bell.BellApi.dao.filter.OfficeFilter;
+import com.bell.BellApi.dto.filter.OfficeFilter;
 import com.bell.BellApi.model.Office;
 
 import java.util.List;

@@ -1,16 +1,19 @@
 package com.bell.BellApi.dao.impl;
 
 import com.bell.BellApi.dao.OfficeDao;
-import com.bell.BellApi.dao.filter.OfficeFilter;
+import com.bell.BellApi.dto.filter.OfficeFilter;
 import com.bell.BellApi.model.Office;
 import com.bell.BellApi.model.Organization;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -24,46 +27,98 @@ import java.util.List;
 @Component
 public class OfficeDaoImpl implements OfficeDao {
 
-    @PersistenceContext
-    private final EntityManager entityManager;
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    public OfficeDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public OfficeDaoImpl(EntityManagerFactory factory) {
+        if(factory.unwrap(SessionFactory.class) == null){
+            throw new NullPointerException("Hibernate factory not found");
+        }
+        this.sessionFactory = factory.unwrap(SessionFactory.class);
     }
 
     @Override
     public List<Office> getAll(OfficeFilter filter) {
-        CriteriaQuery<Office> cq = buildCriteria(filter);
-        TypedQuery<Office> tq = entityManager.createQuery(cq);
-        return tq.getResultList();
+        List<Office> offices = new ArrayList<>();
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = getSession();
+            transaction = session.beginTransaction();
+            CriteriaQuery<Office> cq = buildCriteria(filter);
+            TypedQuery<Office> tq = getSession().createQuery(cq);
+            offices = tq.getResultList();
+            transaction.commit();
+        }catch (Exception e){
+            transaction.rollback();
+            throw (e);
+        }
+        return offices;
     }
 
     @Override
     public Office getById(Long id) {
-        TypedQuery<Office> officeQuery = entityManager.createNamedQuery("Office.getById", Office.class);
-        officeQuery.setParameter("id", id);
-        return officeQuery.getSingleResult();
+        Office office = null;
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = getSession();
+            transaction = session.beginTransaction();
+            TypedQuery<Office> officeQuery = session.createNamedQuery("Office.getById", Office.class);
+            officeQuery.setParameter("id", id);
+            office = officeQuery.getSingleResult();
+            transaction.commit();
+        }catch (Exception e){
+            transaction.rollback();
+            throw (e);
+        }
+        return office;
     }
 
     @Override
     public void save(Office office, Long orgId) {
-        Organization organization = entityManager.getReference(Organization.class, orgId);
-        office.setOrganization(organization);
-        entityManager.persist(office);
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = getSession();
+            transaction = session.beginTransaction();
+            Organization organization = session.getReference(Organization.class, orgId);
+            office.setOrganization(organization);
+            session.save(office);
+            transaction.commit();
+        }catch (Exception e){
+            transaction.rollback();
+            throw (e);
+        }
     }
 
     @Override
     public void update(Office office) {
-        Office fromdb = getById(office.getId());
-        BeanUtils.copyProperties(office, fromdb,
-                office.getPhone() == null ? "phone" : null,
-                office.isActive() == null ? "isActive" : null,
-                "organization");
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = getSession();
+            transaction = session.beginTransaction();
+            Office fromDb = session.find(Office.class, office.getId());
+
+            if(fromDb == null){
+                throw new EntityNotFoundException("Office with id " + office.getId() + " dont exist");
+            }
+
+            BeanUtils.copyProperties(office, fromDb,
+                    office.getPhone() == null ? "phone" : null,
+                    office.isActive() == null ? "isActive" : null,
+                    "organization");
+            transaction.commit();
+        }catch (Exception e){
+            transaction.rollback();
+            throw (e);
+        }
+
     }
 
     private CriteriaQuery<Office> buildCriteria(OfficeFilter filter) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<Office> cq = cb.createQuery(Office.class);
         Root<Office> root = cq.from(Office.class);
         return cq.select(root).where(addPredicates(filter).toPredicate(root, cq, cb));
@@ -85,5 +140,9 @@ public class OfficeDaoImpl implements OfficeDao {
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
+    }
+
+    private Session getSession(){
+        return sessionFactory.openSession();
     }
 }

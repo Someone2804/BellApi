@@ -1,13 +1,12 @@
 package com.bell.BellApi.dao.impl;
 
 import com.bell.BellApi.dao.OrganizationDao;
-import com.bell.BellApi.dao.filter.OrgFilter;
+import com.bell.BellApi.dto.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -51,9 +50,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void update(Organization organization) {
-        Organization fromdb = getById(organization.getId()).orElseThrow(
+        Organization fromDb = getById(organization.getId()).orElseThrow(
                 () -> new EntityNotFoundException("Cannot found organization with id " + organization.getId()));
-        BeanUtils.copyProperties(organization, fromdb,
+        BeanUtils.copyProperties(organization, fromDb,
                 organization.getPhone() == null ? "phone" : null,
                 organization.isActive() == null ? "isActive" : null);
     }

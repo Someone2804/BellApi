@@ -6,7 +6,7 @@ public class OfficeRequest {
 
     private Long id;
 
-    private Long orgid;
+    private Long orgId;
 
     private String name;
 
@@ -16,9 +16,9 @@ public class OfficeRequest {
 
     private Boolean isActive = true;
 
-    public OfficeRequest(Long id, Long orgid, String name, String address, String phone, Boolean isActive) {
+    public OfficeRequest(Long id, Long orgId, String name, String address, String phone, Boolean isActive) {
         this.id = id;
-        this.orgid = orgid;
+        this.orgId = orgId;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -35,12 +35,12 @@ public class OfficeRequest {
         this.id = id;
     }
 
-    public Long getOrgid() {
-        return orgid;
+    public Long getOrgId() {
+        return orgId;
     }
 
-    public void setOrgid(Long orgid) {
-        this.orgid = orgid;
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 
     public String getName() {
@@ -76,7 +76,7 @@ public class OfficeRequest {
     }
 
     public void validateForSave(){
-        if(getOrgid() == null){
+        if(getOrgId() == null){
             throw new IllegalStateException("Missing required parameter orgId");
         }
         checkParam();

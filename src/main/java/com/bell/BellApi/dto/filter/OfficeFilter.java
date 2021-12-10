@@ -1,4 +1,4 @@
-package com.bell.BellApi.dao.filter;
+package com.bell.BellApi.dto.filter;
 
 public class OfficeFilter {
 

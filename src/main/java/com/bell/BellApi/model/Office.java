@@ -5,6 +5,7 @@ import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -67,7 +68,7 @@ public class Office {
     /**
      *  Organization
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
@@ -76,7 +77,6 @@ public class Office {
      */
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
-
 
     /**
      *  Getter for {@link #id}
