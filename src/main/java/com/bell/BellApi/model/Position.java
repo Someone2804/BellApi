@@ -39,6 +39,7 @@ public class Position {
     @ManyToMany(mappedBy = "position", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> workers;
 
+
     /**
      * Getter for {@link #positionName}
      * @return position name

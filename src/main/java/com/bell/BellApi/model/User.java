@@ -78,7 +78,7 @@ public class User {
     /**
      *  Office
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
@@ -88,6 +88,15 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "citizenship_id")
     private Country citizenship;
+
+    public User() {
+    }
+
+    public User(Long id, String firstName, Set<Position> position) {
+        this.id = id;
+        this.firstName = firstName;
+        this.position = position;
+    }
 
     /**
      *  Validation of documents

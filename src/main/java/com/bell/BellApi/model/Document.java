@@ -97,4 +97,12 @@ public class Document {
     public void setDocDate(Date docDate) {
         this.docDate = docDate;
     }
+
+    public DocName getDocumentName() {
+        return documentName;
+    }
+
+    public void setDocumentName(DocName documentName) {
+        this.documentName = documentName;
+    }
 }
