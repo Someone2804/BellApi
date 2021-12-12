@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -30,76 +31,40 @@ public class OfficeDaoImpl implements OfficeDao {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public OfficeDaoImpl(EntityManagerFactory factory) {
-        if(factory.unwrap(SessionFactory.class) == null){
-            throw new NullPointerException("Hibernate factory not found");
-        }
-        this.sessionFactory = factory.unwrap(SessionFactory.class);
+    public OfficeDaoImpl(@Qualifier("hibernateSessionFactory") SessionFactory factory) {
+        this.sessionFactory = factory;
     }
 
     @Override
     public List<Office> getAll(OfficeFilter filter) {
-        List<Office> offices = new ArrayList<>();
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = getSession();
-            transaction = session.beginTransaction();
-            CriteriaQuery<Office> cq = buildCriteria(filter);
-            TypedQuery<Office> tq = getSession().createQuery(cq);
-            offices = tq.getResultList();
-            transaction.commit();
-        }catch (Exception e){
-            transaction.rollback();
-            throw (e);
-        }
-        return offices;
+        Session session = getSession();
+        CriteriaQuery<Office> cq = buildCriteria(filter);
+        TypedQuery<Office> tq = session.createQuery(cq);
+
+        return tq.getResultList();
     }
 
     @Override
     public Office getById(Long id) {
-        Office office = null;
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = getSession();
-            transaction = session.beginTransaction();
+            Session session = getSession();
             TypedQuery<Office> officeQuery = session.createNamedQuery("Office.getById", Office.class);
             officeQuery.setParameter("id", id);
-            office = officeQuery.getSingleResult();
-            transaction.commit();
-        }catch (Exception e){
-            transaction.rollback();
-            throw (e);
-        }
-        return office;
+
+        return officeQuery.getSingleResult();
     }
 
     @Override
     public void save(Office office, Long orgId) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = getSession();
-            transaction = session.beginTransaction();
-            Organization organization = session.getReference(Organization.class, orgId);
+            Session session = getSession();
+            Organization organization = session.get(Organization.class, orgId);
             office.setOrganization(organization);
             session.save(office);
-            transaction.commit();
-        }catch (Exception e){
-            transaction.rollback();
-            throw (e);
-        }
     }
 
     @Override
     public void update(Office office) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = getSession();
-            transaction = session.beginTransaction();
-            Office fromDb = session.find(Office.class, office.getId());
+            Session session = getSession();
+            Office fromDb = session.load(Office.class, office.getId());
 
             if(fromDb == null){
                 throw new EntityNotFoundException("Office with id " + office.getId() + " dont exist");
@@ -109,12 +74,6 @@ public class OfficeDaoImpl implements OfficeDao {
                     office.getPhone() == null ? "phone" : null,
                     office.isActive() == null ? "isActive" : null,
                     "organization");
-            transaction.commit();
-        }catch (Exception e){
-            transaction.rollback();
-            throw (e);
-        }
-
     }
 
     private CriteriaQuery<Office> buildCriteria(OfficeFilter filter) {
@@ -143,6 +102,6 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 }

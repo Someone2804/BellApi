@@ -8,6 +8,7 @@ import com.bell.BellApi.dto.office.response.OfficeDtoId;
 import com.bell.BellApi.service.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,24 +22,28 @@ public class OfficeServiceImpl implements OfficeService {
         this.officeDao = officeDao;
     }
 
+    @Transactional(transactionManager = "hibernate")
     @Override
     public void add(OfficeRequest office) {
         office.validateForSave();
         officeDao.save(OfficeRequest.mapToEntity(office), office.getOrgId());
     }
 
+    @Transactional(transactionManager = "hibernate")
     @Override
     public void update(OfficeRequest office) {
         office.validateForUpdate();
         officeDao.update(OfficeRequest.mapToEntity(office));
     }
 
+    @Transactional(transactionManager = "hibernate")
     @Override
     public List<OfficeDtoAll> getAll(OfficeFilter filter) {
         filter.validate();
         return OfficeDtoAll.mapToDtoList(officeDao.getAll(filter));
     }
 
+    @Transactional(transactionManager = "hibernate")
     @Override
     public OfficeDtoId getById(Long id) {
         return OfficeDtoId.mapToDto(officeDao.getById(id));

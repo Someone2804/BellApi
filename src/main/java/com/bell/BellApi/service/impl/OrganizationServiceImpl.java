@@ -26,21 +26,21 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 
     @Override
-    @Transactional
+    @Transactional(transactionManager = "jpa")
     public void add(OrganizationRequest organization) {
         organization.validateForSave();
         organizationDao.save(OrganizationRequest.mapToEntity(organization));
     }
 
     @Override
-    @Transactional
+    @Transactional(transactionManager = "jpa")
     public void update(OrganizationRequest organization) {
         organization.validateForUpdate();
         organizationDao.update(OrganizationRequest.mapToEntity(organization));
     }
 
     @Override
-    @Transactional
+    @Transactional(transactionManager = "jpa")
     public OrganizationDtoId getById(Long id) {
         Organization organization = organizationDao.getById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Organization with id " + id + " not found"));
@@ -48,7 +48,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    @Transactional
+    @Transactional(transactionManager = "jpa")
     public List<OrganizationDtoAll> getAll(OrgFilter filter) {
         filter.validate();
         return OrganizationDtoAll.mapToDtoList(organizationDao.getAll(filter));
