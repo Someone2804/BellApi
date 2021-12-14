@@ -76,11 +76,6 @@ public class OfficeDaoImpl implements OfficeDao {
                     "organization");
     }
 
-    @Override
-    public Office getReference(Long id){
-        return getSession().load(Office.class, id);
-    }
-
     private CriteriaQuery<Office> buildCriteria(OfficeFilter filter) {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<Office> cq = cb.createQuery(Office.class);

@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         user.validateForSave();
         User result = new User();
         user.fillUser(result);
-        result.setOffice(officeDao.getReference(user.getOfficeId()));
+        result.setOffice(officeDao.getById(user.getOfficeId()));
         result.addPosition(positionDao.getByName(user.getPosition()));
         if(user.validateCitizenship()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
