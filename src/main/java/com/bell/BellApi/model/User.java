@@ -72,7 +72,7 @@ public class User {
     /**
      *  User document
      */
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private Document document;
 
     /**

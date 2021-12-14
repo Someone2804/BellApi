@@ -60,9 +60,7 @@ CREATE TABLE IF NOT EXISTS Document(
     version INTEGER NOT NULL,
     doc_number VARCHAR(20) NOT NULL,
     doc_date DATE NOT NULL,
-    usr_id INTEGER NOT NULL,
     doc_name_id INTEGER NOT NULL,
-    FOREIGN KEY(usr_id) REFERENCES Usr(id),
     FOREIGN KEY(doc_name_id) REFERENCES Document_name(id)
 );
 

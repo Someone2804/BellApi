@@ -1,6 +1,7 @@
 package com.bell.BellApi.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,9 +49,9 @@ public class Document {
     /**
      *  User
      */
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @MapsId
-    @JoinColumn(name = "usr_id")
+    @JoinColumn(name = "id", nullable = false)
     private User user;
 
     /**
@@ -104,5 +105,13 @@ public class Document {
 
     public void setDocumentName(DocName documentName) {
         this.documentName = documentName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
