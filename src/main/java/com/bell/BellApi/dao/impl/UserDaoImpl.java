@@ -32,8 +32,8 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     private final String GET_BY_ID = "select u.id, u.first_name, u.second_name, u.middle_name, u.phone, u.is_identified, p.position_name, dm.doc_name, d.doc_number, d.doc_date, c.citizenship_name, c.citizenship_code from Usr u " +
-            "left join Usr_Position up on u.id = up.usr_id join Position p on up.position_id = p.id " +
-            "left join Document d on u.id = d.usr_id " +
+            "left join Usr_Position up on u.id = up.usr_id left join Position p on up.position_id = p.id " +
+            "left join Document d on u.id = d.id " +
             "left join Document_name dm on d.doc_name_id = dm.id " +
             "left join Citizenship c on u.citizenship_id = c.id " +
             "where u.id = ?";
@@ -63,6 +63,7 @@ public class UserDaoImpl implements UserDao {
         UserDtoId user = new UserDtoId();
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(GET_BY_ID)){
+            connection.setAutoCommit(false);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
@@ -79,6 +80,7 @@ public class UserDaoImpl implements UserDao {
                 user.setCitizenshipCode(resultSet.getString("citizenship_code"));
                 user.setIdentified(resultSet.getBoolean("is_identified"));
             }
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException("Sql exception", e);
         }

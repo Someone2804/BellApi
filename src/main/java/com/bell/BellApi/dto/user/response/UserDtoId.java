@@ -140,11 +140,15 @@ public class UserDtoId {
         result.setSecondName(user.getSecondName());
         result.setMiddleName(user.getMiddleName());
         result.setPhone(user.getPhone());
-        result.setDocName(user.getDocument().getDocumentName().getDocName());
-        result.setDocNumber(user.getDocument().getDocNumber());
-        result.setDocDate(user.getDocument().getDocDate());
-        result.setCitizenshipName(user.getCitizenship().getCitizenshipName());
-        result.setCitizenshipCode(user.getCitizenship().getCitizenshipCode());
+        if(user.getDocument() != null) {
+            result.setDocName(user.getDocument().getDocumentName().getDocName());
+            result.setDocNumber(user.getDocument().getDocNumber());
+            result.setDocDate(user.getDocument().getDocDate());
+        }
+        if(user.getCitizenship() != null) {
+            result.setCitizenshipName(user.getCitizenship().getCitizenshipName());
+            result.setCitizenshipCode(user.getCitizenship().getCitizenshipCode());
+        }
         result.setIdentified(user.isIdentified());
         return result;
     }
