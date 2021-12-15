@@ -10,4 +10,5 @@ public interface OfficeDao {
     Office getById(Long id);
     void save(Office office, Long orgid);
     void update(Office office);
+    Office getReference(Long officeId);
 }

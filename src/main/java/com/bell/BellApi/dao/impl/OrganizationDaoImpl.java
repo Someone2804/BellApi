@@ -28,7 +28,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public OrganizationDaoImpl(EntityManager entityManager) {
+    public OrganizationDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

@@ -3,6 +3,7 @@ package com.bell.BellApi.dao.impl;
 import com.bell.BellApi.dao.CountryDao;
 import com.bell.BellApi.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class CountryDaoImpl implements CountryDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public CountryDaoImpl(EntityManager entityManager) {
+    public CountryDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

@@ -39,13 +39,13 @@ public class UserServiceImpl implements UserService {
         this.positionDao = positionDao;
     }
 
-    @Transactional(transactionManager = "jpa")
+    @Transactional
     @Override
     public void add(UserRequest user) {
         user.validateForSave();
         User result = new User();
         user.fillUser(result);
-        result.setOffice(officeDao.getById(user.getOfficeId()));
+        result.setOffice(officeDao.getReference(user.getOfficeId()));
         result.addPosition(positionDao.getByName(user.getPosition()));
         if(user.validateCitizenship()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
@@ -61,13 +61,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Transactional(transactionManager = "jpa")
+    @Transactional
     @Override
     public void update(UserRequest user) {
 
     }
 
-    @Transactional(transactionManager = "jpa")
+    @Transactional
     @Override
     public List<UserDtoAll> getAll(UserFilter filter) {
         filter.validate();

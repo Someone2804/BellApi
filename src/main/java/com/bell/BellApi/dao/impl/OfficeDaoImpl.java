@@ -6,15 +6,15 @@ import com.bell.BellApi.model.Office;
 import com.bell.BellApi.model.Organization;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,9 +30,13 @@ public class OfficeDaoImpl implements OfficeDao {
 
     private final SessionFactory sessionFactory;
 
+    @PersistenceContext
+    private final EntityManager entityManager;
+
     @Autowired
-    public OfficeDaoImpl(@Qualifier("hibernateSessionFactory") SessionFactory factory) {
+    public OfficeDaoImpl(@Qualifier("hibernateSessionFactory") SessionFactory factory, @Qualifier("entityManagerFactory") EntityManager entityManager) {
         this.sessionFactory = factory;
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -74,6 +78,11 @@ public class OfficeDaoImpl implements OfficeDao {
                     office.getPhone() == null ? "phone" : null,
                     office.isActive() == null ? "isActive" : null,
                     "organization");
+    }
+
+    @Override
+    public Office getReference(Long officeId) {
+        return entityManager.getReference(Office.class, officeId);
     }
 
     private CriteriaQuery<Office> buildCriteria(OfficeFilter filter) {

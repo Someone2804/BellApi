@@ -6,6 +6,7 @@ import com.bell.BellApi.dto.user.response.UserDtoId;
 import com.bell.BellApi.model.Position;
 import com.bell.BellApi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +46,7 @@ public class UserDaoImpl implements UserDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public UserDaoImpl(DataSource dataSource, EntityManager entityManager) {
+    public UserDaoImpl(DataSource dataSource, @Qualifier("entityManagerFactory") EntityManager entityManager) {
         this.dataSource = dataSource;
         this.entityManager = entityManager;
     }

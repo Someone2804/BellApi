@@ -3,6 +3,7 @@ package com.bell.BellApi.dao.impl;
 import com.bell.BellApi.dao.DocumentDao;
 import com.bell.BellApi.model.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class DocumentDaoImpl implements DocumentDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public DocumentDaoImpl(EntityManager entityManager) {
+    public DocumentDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
