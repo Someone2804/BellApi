@@ -140,16 +140,17 @@ public class UserRequest {
         if(getOfficeId() == null){
             throw new IllegalStateException("Missing required parameter officeId");
         }
-        if(getFirstName() == null){
-            throw new IllegalStateException("Missing required parameter firstName");
+        validateFields();
+    }
+    public void validateForUpdate(){
+        if(getId() == null){
+            throw new IllegalStateException("Missing required parameter id");
         }
-        if(getPosition() == null){
-            throw new IllegalStateException("Missing required parameter position");
-        }
+        validateFields();
     }
 
     public boolean validateDocument() {
-        if (getDocCode() != null && getDocName() != null) {
+        if (getDocCode() != null || getDocName() != null) {
             if (getDocDate() == null) {
                 throw new IllegalStateException("Missing required parameter docDate");
             }
@@ -170,12 +171,23 @@ public class UserRequest {
         document.setDocNumber(getDocNumber());
     }
 
-    public void fillUser(User user){
-        user.setId(getId());
-        user.setFirstName(getFirstName());
-        user.setSecondName(getSecondName());
-        user.setMiddleName(getMiddleName());
-        user.setPhone(getPhone());
-        user.setIdentified(getIdentified());
+    private void validateFields(){
+        if(getFirstName() == null){
+            throw new IllegalStateException("Missing required parameter firstName");
+        }
+        if(getPosition() == null){
+            throw new IllegalStateException("Missing required parameter position");
+        }
+    }
+
+    public static User mapToEntity(UserRequest userRequest){
+        User user = new User();
+        user.setId(userRequest.getId());
+        user.setFirstName(userRequest.getFirstName());
+        user.setSecondName(userRequest.getSecondName());
+        user.setMiddleName(userRequest.getMiddleName());
+        user.setPhone(userRequest.getPhone());
+        user.setIdentified(userRequest.getIdentified());
+        return user;
     }
 }

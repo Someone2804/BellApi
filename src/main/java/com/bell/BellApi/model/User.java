@@ -89,6 +89,12 @@ public class User {
     @JoinColumn(name = "citizenship_id")
     private Country citizenship;
 
+    /**
+     *  Validation of documents
+     */
+    @Column(name = "is_identified")
+    private boolean isIdentified;
+
     public User() {
     }
 
@@ -97,12 +103,6 @@ public class User {
         this.firstName = firstName;
         this.position = position;
     }
-
-    /**
-     *  Validation of documents
-     */
-    @Column(name = "is_identified")
-    private boolean isIdentified;
 
     /**
      * Getter for {@link #id}
