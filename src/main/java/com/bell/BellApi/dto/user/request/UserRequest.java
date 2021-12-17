@@ -32,6 +32,22 @@ public class UserRequest {
 
     private boolean isIdentified;
 
+    public UserRequest(Long id, Long officeId, String firstName, String secondName, String middleName, String position, String phone, String docName, String docCode, String docNumber, Date docDate, String citizenshipCode, boolean isIdentified) {
+        this.id = id;
+        this.officeId = officeId;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.phone = phone;
+        this.docName = docName;
+        this.docCode = docCode;
+        this.docNumber = docNumber;
+        this.docDate = docDate;
+        this.citizenshipCode = citizenshipCode;
+        this.isIdentified = isIdentified;
+    }
+
     public Long getId() {
         return id;
     }

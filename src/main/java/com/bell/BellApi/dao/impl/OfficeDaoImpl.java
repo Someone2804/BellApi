@@ -76,7 +76,6 @@ public class OfficeDaoImpl implements OfficeDao {
 
             BeanUtils.copyProperties(office, fromDb,
                     office.getPhone() == null ? "phone" : null,
-                    office.isActive() == null ? "isActive" : null,
                     "organization");
     }
 

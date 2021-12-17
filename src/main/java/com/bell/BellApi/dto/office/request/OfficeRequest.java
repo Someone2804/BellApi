@@ -14,17 +14,15 @@ public class OfficeRequest {
 
     private String phone;
 
-    private Boolean isActive = true;
+    private boolean isActive;
 
-    public OfficeRequest(Long id, Long orgId, String name, String address, String phone, Boolean isActive) {
+    public OfficeRequest(Long id, Long orgId, String name, String address, String phone, boolean isActive) {
         this.id = id;
         this.orgId = orgId;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        if(isActive != null) {
-            this.isActive = isActive;
-        }
+        this.isActive = isActive;
     }
 
     public Long getId() {
@@ -67,11 +65,11 @@ public class OfficeRequest {
         this.phone = phone;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 

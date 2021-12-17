@@ -76,7 +76,7 @@ public class Office {
      *  Is active
      */
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
+    private boolean isActive;
 
     /**
      *  Getter for {@link #id}
@@ -176,14 +176,14 @@ public class Office {
      *  Getter for {@link #isActive}
      *  @return true if office is active
      */
-    public Boolean isActive() {
+    public boolean isActive() {
         return isActive;
     }
 
     /**
      *  Setter for {@link #isActive}
      */
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 }

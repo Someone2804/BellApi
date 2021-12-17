@@ -54,8 +54,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
         Organization fromDb = getById(organization.getId()).orElseThrow(
                 () -> new EntityNotFoundException("Cannot found organization with id " + organization.getId()));
         BeanUtils.copyProperties(organization, fromDb,
-                organization.getPhone() == null ? "phone" : null,
-                organization.isActive() == null ? "isActive" : null);
+                organization.getPhone() == null ? "phone" : null);
     }
 
     private CriteriaQuery<Organization> buildCriteria(OrgFilter filter){

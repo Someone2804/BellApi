@@ -18,9 +18,9 @@ public class OrganizationRequest {
 
     private String phone;
 
-    private Boolean isActive = true;
+    private boolean isActive;
 
-    public OrganizationRequest(Long id, String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
+    public OrganizationRequest(Long id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -28,9 +28,7 @@ public class OrganizationRequest {
         this.kpp = kpp;
         this.address = address;
         this.phone = phone;
-        if(isActive != null) {
-            this.isActive = isActive;
-        }
+        this.isActive = isActive;
     }
 
     public Long getId() {
@@ -89,11 +87,11 @@ public class OrganizationRequest {
         this.phone = phone;
     }
 
-    public Boolean isActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 
