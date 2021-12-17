@@ -2,6 +2,7 @@ package com.bell.BellApi.dao.impl;
 
 import com.bell.BellApi.dao.DocumentDao;
 import com.bell.BellApi.model.Document;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,8 @@ public class DocumentDaoImpl implements DocumentDao {
 
     @Override
     public void update(Document document) {
-
+        Document fromDb = entityManager.find(Document.class, document.getUser().getId());
+        BeanUtils.copyProperties(document, fromDb);
     }
 
     @Override

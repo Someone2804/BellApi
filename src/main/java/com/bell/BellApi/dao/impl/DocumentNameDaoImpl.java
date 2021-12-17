@@ -23,10 +23,16 @@ public class DocumentNameDaoImpl implements DocumentNameDao {
 
 
     @Override
-    public DocName getByNameAndCode(String docName, String docCode) {
-        TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docCode=:code and dm.docName=:name", DocName.class);
-        query.setParameter("name", docName);
+    public DocName getByCode(String docCode) {
+        TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docCode=:code", DocName.class);
         query.setParameter("code", docCode);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public DocName getByName(String docName) {
+        TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docName=:name", DocName.class);
+        query.setParameter("name", docName);
         return query.getSingleResult();
     }
 }

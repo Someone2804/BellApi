@@ -10,5 +10,6 @@ public interface UserDao {
     List<User> getAll(UserFilter filter);
     UserDtoId getById(Long id);
     void save(User user);
-    void update(User user);
+    User update(User user);
+    User getReference(Long id);
 }

@@ -5,6 +5,7 @@ import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.response.UserDtoId;
 import com.bell.BellApi.model.Position;
 import com.bell.BellApi.model.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -97,8 +99,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(User user) {
+    public User update(User user) {
+        User fromDb = Optional.ofNullable(entityManager.find(User.class, user.getId()))
+                .orElseThrow(() -> new EntityNotFoundException("Entity with id " + user.getId() + " not found"));
 
+        BeanUtils.copyProperties(user, fromDb,
+                user.getSecondName() == null ? "secondName" : null,
+                user.getMiddleName() == null ? "middleName" : null,
+                user.getPhone() == null ? "phone" : null,
+                "document",
+                user.getOffice() == null ? "office" : null,
+                user.getPosition() == null ? "position" : null);
+
+        return fromDb;
+    }
+
+    @Override
+    public User getReference(Long id) {
+        return entityManager.getReference(User.class, id);
     }
 
     private CriteriaQuery<User> buildCriteria(UserFilter filter) {

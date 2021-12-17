@@ -43,17 +43,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(UserRequest user) {
         user.validateForSave();
-        User result = new User();
-        user.fillUser(result);
+        User result = UserRequest.mapToEntity(user);
         result.setOffice(officeDao.getReference(user.getOfficeId()));
         result.addPosition(positionDao.getByName(user.getPosition()));
         if(user.validateCitizenship()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
         }
         if(user.validateDocument()) {
-            Document document = new Document();
-            document.setDocumentName(documentNameDao.getByNameAndCode(user.getDocName(), user.getDocCode()));
-            user.fillDocument(document);
+            Document document = createDocument(user);
             document.setUser(result);
             documentDao.save(document);
         }
@@ -64,7 +61,22 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void update(UserRequest user) {
-
+        user.validateForUpdate();
+        User result = UserRequest.mapToEntity(user);
+        if(user.getOfficeId() != null){
+            result.setOffice(officeDao.getReference(user.getOfficeId()));
+        }
+        if((user.getCitizenshipCode() != null) && (user.validateCitizenship())){
+            result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
+        }
+        result.addPosition(positionDao.getByName(user.getPosition()));
+        User fromDb = userDao.update(result);
+        if(user.validateDocument()) {
+            Document document = createDocument(user);
+            document.setUser(fromDb);
+            document.setId(fromDb.getId());
+            documentDao.update(document);
+        }
     }
 
     @Transactional
@@ -77,5 +89,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDtoId getById(Long id) {
         return userDao.getById(id);
+    }
+
+    private Document createDocument(UserRequest user){
+        Document document = new Document();
+        if(user.getDocName() != null) {
+            document.setDocumentName(documentNameDao.getByName(user.getDocName()));
+        }else{
+            document.setDocumentName(documentNameDao.getByCode(user.getDocCode()));
+        }
+        user.fillDocument(document);
+        return document;
     }
 }
