@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Component
 public class CountryDaoImpl implements CountryDao {
@@ -26,5 +27,10 @@ public class CountryDaoImpl implements CountryDao {
         TypedQuery<Country> query = entityManager.createQuery("select c from Country c where c.citizenshipCode=:code", Country.class);
         query.setParameter("code", code);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<Country> getAll() {
+        return entityManager.createQuery("select c from Country c", Country.class).getResultList();
     }
 }

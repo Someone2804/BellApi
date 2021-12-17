@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Component
 public class DocumentNameDaoImpl implements DocumentNameDao {
@@ -34,5 +35,10 @@ public class DocumentNameDaoImpl implements DocumentNameDao {
         TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docName=:name", DocName.class);
         query.setParameter("name", docName);
         return query.getSingleResult();
+    }
+
+    @Override
+    public List<DocName> getAll() {
+        return entityManager.createQuery("select dm from DocName dm", DocName.class).getResultList();
     }
 }
