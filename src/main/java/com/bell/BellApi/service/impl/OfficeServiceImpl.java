@@ -36,14 +36,14 @@ public class OfficeServiceImpl implements OfficeService {
         officeDao.update(OfficeRequest.mapToEntity(office));
     }
 
-    @Transactional(transactionManager = "hibernate")
+    @Transactional(transactionManager = "hibernate", readOnly = true)
     @Override
     public List<OfficeDtoAll> getAll(OfficeFilter filter) {
         filter.validate();
         return OfficeDtoAll.mapToDtoList(officeDao.getAll(filter));
     }
 
-    @Transactional(transactionManager = "hibernate")
+    @Transactional(transactionManager = "hibernate", readOnly = true)
     @Override
     public OfficeDtoId getById(Long id) {
         return OfficeDtoId.mapToDto(officeDao.getById(id));

@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<UserDtoAll> getAll(UserFilter filter) {
         filter.validate();

@@ -40,7 +40,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public OrganizationDtoId getById(Long id) {
         Organization organization = organizationDao.getById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Organization with id " + id + " not found"));
@@ -48,7 +48,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<OrganizationDtoAll> getAll(OrgFilter filter) {
         filter.validate();
         return OrganizationDtoAll.mapToDtoList(organizationDao.getAll(filter));
