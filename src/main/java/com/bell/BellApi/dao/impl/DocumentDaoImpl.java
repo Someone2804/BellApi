@@ -36,14 +36,4 @@ public class DocumentDaoImpl implements DocumentDao {
             BeanUtils.copyProperties(document, fromDb);
         }
     }
-
-    @Override
-    public Document getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<Document> getAll() {
-        return null;
-    }
 }
