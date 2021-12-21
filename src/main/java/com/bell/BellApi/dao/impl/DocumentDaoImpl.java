@@ -30,7 +30,11 @@ public class DocumentDaoImpl implements DocumentDao {
     @Override
     public void update(Document document) {
         Document fromDb = entityManager.find(Document.class, document.getUser().getId());
-        BeanUtils.copyProperties(document, fromDb);
+        if(fromDb == null){
+            save(document);
+        }else {
+            BeanUtils.copyProperties(document, fromDb);
+        }
     }
 
     @Override
