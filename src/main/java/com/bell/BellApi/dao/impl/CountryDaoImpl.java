@@ -18,7 +18,7 @@ public class CountryDaoImpl implements CountryDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public CountryDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
+    public CountryDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

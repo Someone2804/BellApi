@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public UserDaoImpl(DataSource dataSource, @Qualifier("entityManagerFactory") EntityManager entityManager) {
+    public UserDaoImpl(DataSource dataSource, EntityManager entityManager) {
         this.dataSource = dataSource;
         this.entityManager = entityManager;
     }

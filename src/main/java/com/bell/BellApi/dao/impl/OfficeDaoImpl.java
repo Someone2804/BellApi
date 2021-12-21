@@ -4,11 +4,8 @@ import com.bell.BellApi.dao.OfficeDao;
 import com.bell.BellApi.dto.filter.OfficeFilter;
 import com.bell.BellApi.model.Office;
 import com.bell.BellApi.model.Organization;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -28,55 +25,46 @@ import java.util.List;
 @Component
 public class OfficeDaoImpl implements OfficeDao {
 
-    private final SessionFactory sessionFactory;
-
     @PersistenceContext
     private final EntityManager entityManager;
 
     @Autowired
-    public OfficeDaoImpl(@Qualifier("hibernateSessionFactory") SessionFactory factory, @Qualifier("entityManagerFactory") EntityManager entityManager) {
-        this.sessionFactory = factory;
+    public OfficeDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     public List<Office> getAll(OfficeFilter filter) {
-        Session session = getSession();
         CriteriaQuery<Office> cq = buildCriteria(filter);
-        TypedQuery<Office> tq = session.createQuery(cq);
+        TypedQuery<Office> tq = entityManager.createQuery(cq);
 
         return tq.getResultList();
     }
 
     @Override
     public Office getById(Long id) {
-            Session session = getSession();
-            TypedQuery<Office> officeQuery = session.createNamedQuery("Office.getById", Office.class);
-            officeQuery.setParameter("id", id);
+        TypedQuery<Office> officeQuery = entityManager.createNamedQuery("Office.getById", Office.class);
+        officeQuery.setParameter("id", id);
 
         return officeQuery.getSingleResult();
     }
 
     @Override
-    public void save(Office office, Long orgId) {
-            Session session = getSession();
-            Organization organization = session.get(Organization.class, orgId);
-            office.setOrganization(organization);
-            session.save(office);
+    public void save(Office office) {
+        entityManager.persist(office);
     }
 
     @Override
     public void update(Office office) {
-            Session session = getSession();
-            Office fromDb = session.load(Office.class, office.getId());
+        Office fromDb = getById(office.getId());
 
-            if(fromDb == null){
-                throw new EntityNotFoundException("Office with id " + office.getId() + " dont exist");
-            }
+        if(fromDb == null){
+            throw new EntityNotFoundException("Office with id " + office.getId() + " dont exist");
+        }
 
-            BeanUtils.copyProperties(office, fromDb,
-                    office.getPhone() == null ? "phone" : null,
-                    "organization");
+        BeanUtils.copyProperties(office, fromDb,
+                office.getPhone() == null ? "phone" : null,
+                "organization");
     }
 
     @Override
@@ -85,7 +73,7 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     private CriteriaQuery<Office> buildCriteria(OfficeFilter filter) {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Office> cq = cb.createQuery(Office.class);
         Root<Office> root = cq.from(Office.class);
         return cq.select(root).where(addPredicates(filter).toPredicate(root, cq, cb));
@@ -107,9 +95,5 @@ public class OfficeDaoImpl implements OfficeDao {
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
-    }
-
-    private Session getSession(){
-        return sessionFactory.getCurrentSession();
     }
 }

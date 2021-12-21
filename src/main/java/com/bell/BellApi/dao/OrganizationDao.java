@@ -11,4 +11,5 @@ public interface OrganizationDao {
     Optional<Organization> getById(Long id);
     void save(Organization organization);
     void update(Organization organization);
+    Organization getReference(Long id);
 }

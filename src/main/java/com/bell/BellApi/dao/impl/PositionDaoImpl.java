@@ -17,7 +17,7 @@ public class PositionDaoImpl implements PositionDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public PositionDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
+    public PositionDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

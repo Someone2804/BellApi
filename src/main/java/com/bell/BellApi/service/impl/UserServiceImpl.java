@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
         if(user.getOfficeId() != null){
             result.setOffice(officeDao.getReference(user.getOfficeId()));
         }
-        if((user.getCitizenshipCode() != null) && (user.validateCitizenship())){
+        if(user.validateCitizenship()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
         }
         result.addPosition(positionDao.getByName(user.getPosition()));

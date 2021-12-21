@@ -110,7 +110,7 @@ public class OfficeRequest {
         if(getName().length() > 50){
             throw new IllegalStateException("Max characters for name is 50");
         }
-        if(isNullOrEmpty(getPhone()) && getPhone().length() > 30){
+        if(!isNullOrEmpty(getPhone()) && getPhone().length() > 30){
             throw new IllegalStateException("Max characters for phone is 30");
         }
     }

@@ -17,7 +17,7 @@ public class DocumentDaoImpl implements DocumentDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public DocumentDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
+    public DocumentDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

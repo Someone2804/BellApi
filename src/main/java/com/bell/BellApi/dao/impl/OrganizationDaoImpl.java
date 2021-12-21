@@ -28,7 +28,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public OrganizationDaoImpl(@Qualifier("entityManagerFactory") EntityManager entityManager) {
+    public OrganizationDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -55,6 +55,11 @@ public class OrganizationDaoImpl implements OrganizationDao {
                 () -> new EntityNotFoundException("Cannot found organization with id " + organization.getId()));
         BeanUtils.copyProperties(organization, fromDb,
                 organization.getPhone() == null ? "phone" : null);
+    }
+
+    @Override
+    public Organization getReference(Long id) {
+        return entityManager.getReference(Organization.class, id);
     }
 
     private CriteriaQuery<Organization> buildCriteria(OrgFilter filter){

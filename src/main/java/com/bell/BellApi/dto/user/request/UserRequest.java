@@ -15,7 +15,7 @@ public class UserRequest {
     private String secondName;
 
     private String middleName;
-    
+
     private String position;
 
     private String phone;
@@ -179,7 +179,7 @@ public class UserRequest {
     }
 
     public boolean validateCitizenship(){
-        return isNullOrEmpty(getCitizenshipCode());
+        return !isNullOrEmpty(getCitizenshipCode());
     }
 
     public void fillDocument(Document document){
@@ -204,6 +204,18 @@ public class UserRequest {
         }
         if(isNullOrEmpty(getPosition())){
             throw new IllegalStateException("Missing required parameter position");
+        }
+        if(getFirstName().length() > 50){
+            throw new IllegalStateException("Max characters for firstName is 50");
+        }
+        if(!isNullOrEmpty(getSecondName()) && getSecondName().length() > 50){
+            throw new IllegalStateException("Max characters for secondName is 50");
+        }
+        if(!isNullOrEmpty(getMiddleName()) && getMiddleName().length() > 50){
+            throw new IllegalStateException("Max characters for middleName is 50");
+        }
+        if(!isNullOrEmpty(getPhone()) && getPhone().length() > 30){
+            throw new IllegalStateException("Max characters for phone is 30");
         }
     }
 
