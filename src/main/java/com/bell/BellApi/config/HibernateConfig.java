@@ -1,11 +1,9 @@
 package com.bell.BellApi.config;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.support.JdbcTransactionManager;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;

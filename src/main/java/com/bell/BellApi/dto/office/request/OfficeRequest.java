@@ -98,11 +98,24 @@ public class OfficeRequest {
     }
 
     private void checkParam(){
-        if(getName() == null){
+        if(isNullOrEmpty(getName())){
             throw new IllegalStateException("Missing required parameter name");
         }
-        if(getAddress() == null){
+        if(isNullOrEmpty(getAddress())){
             throw new IllegalStateException("Missing required parameter address");
         }
+        if(getAddress().length() > 50){
+            throw new IllegalStateException("Max characters for address is 50");
+        }
+        if(getName().length() > 50){
+            throw new IllegalStateException("Max characters for name is 50");
+        }
+        if(isNullOrEmpty(getPhone()) && getPhone().length() > 30){
+            throw new IllegalStateException("Max characters for phone is 30");
+        }
+    }
+
+    private static boolean isNullOrEmpty(String s){
+        return s == null || s.isBlank();
     }
 }

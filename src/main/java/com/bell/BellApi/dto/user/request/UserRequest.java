@@ -15,7 +15,7 @@ public class UserRequest {
     private String secondName;
 
     private String middleName;
-
+    
     private String position;
 
     private String phone;
@@ -170,7 +170,7 @@ public class UserRequest {
             if (getDocDate() == null) {
                 throw new IllegalStateException("Missing required parameter docDate");
             }
-            if (getDocNumber() == null) {
+            if (isNullOrEmpty(getDocNumber())) {
                 throw new IllegalStateException("Missing required parameter docNumber");
             }
             return true;
@@ -179,21 +179,12 @@ public class UserRequest {
     }
 
     public boolean validateCitizenship(){
-        return getCitizenshipCode() != null;
+        return isNullOrEmpty(getCitizenshipCode());
     }
 
     public void fillDocument(Document document){
         document.setDocDate(getDocDate());
         document.setDocNumber(getDocNumber());
-    }
-
-    private void validateFields(){
-        if(getFirstName() == null){
-            throw new IllegalStateException("Missing required parameter firstName");
-        }
-        if(getPosition() == null){
-            throw new IllegalStateException("Missing required parameter position");
-        }
     }
 
     public static User mapToEntity(UserRequest userRequest){
@@ -205,5 +196,18 @@ public class UserRequest {
         user.setPhone(userRequest.getPhone());
         user.setIdentified(userRequest.getIdentified());
         return user;
+    }
+
+    private void validateFields(){
+        if(isNullOrEmpty(getFirstName())){
+            throw new IllegalStateException("Missing required parameter firstName");
+        }
+        if(isNullOrEmpty(getPosition())){
+            throw new IllegalStateException("Missing required parameter position");
+        }
+    }
+
+    private static boolean isNullOrEmpty(String s){
+        return s == null || s.isBlank();
     }
 }

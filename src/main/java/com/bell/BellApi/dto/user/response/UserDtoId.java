@@ -1,6 +1,5 @@
 package com.bell.BellApi.dto.user.response;
 
-import com.bell.BellApi.model.Position;
 import com.bell.BellApi.model.User;
 
 import java.util.ArrayList;
