@@ -4,7 +4,6 @@ import com.bell.BellApi.dao.DocumentDao;
 import com.bell.BellApi.model.Document;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

@@ -5,7 +5,6 @@ import com.bell.BellApi.dto.filter.OrgFilter;
 import com.bell.BellApi.model.Organization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

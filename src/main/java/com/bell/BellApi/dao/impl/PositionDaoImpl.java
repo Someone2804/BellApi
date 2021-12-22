@@ -3,7 +3,6 @@ package com.bell.BellApi.dao.impl;
 import com.bell.BellApi.dao.PositionDao;
 import com.bell.BellApi.model.Position;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
