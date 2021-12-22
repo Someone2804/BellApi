@@ -30,6 +30,9 @@ import java.util.List;
 import java.util.Optional;
 
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class UserDaoImpl implements UserDao {
 
@@ -52,6 +55,9 @@ public class UserDaoImpl implements UserDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> getAll(UserFilter filter) {
         CriteriaQuery<User> cq = buildCriteria(filter);
@@ -60,6 +66,9 @@ public class UserDaoImpl implements UserDao {
         return resultList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserDtoId getById(Long id) {
         UserDtoId user = new UserDtoId();
@@ -92,11 +101,17 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(User user) {
         entityManager.persist(user);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User update(User user) {
         User fromDb = Optional.ofNullable(entityManager.find(User.class, user.getId()))
@@ -112,6 +127,9 @@ public class UserDaoImpl implements UserDao {
         return fromDb;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getReference(Long id) {
         return entityManager.getReference(User.class, id);

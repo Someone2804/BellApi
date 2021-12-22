@@ -12,6 +12,10 @@ import javax.persistence.Version;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Country
+ */
 @Entity
 @Table(name = "Citizenship")
 public class Country {

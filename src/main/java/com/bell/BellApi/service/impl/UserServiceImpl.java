@@ -19,6 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -39,6 +42,9 @@ public class UserServiceImpl implements UserService {
         this.positionDao = positionDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional
     @Override
     public void add(UserRequest user) {
@@ -46,7 +52,7 @@ public class UserServiceImpl implements UserService {
         User result = UserRequest.mapToEntity(user);
         result.setOffice(officeDao.getReference(user.getOfficeId()));
         result.addPosition(positionDao.getByName(user.getPosition()));
-        if(user.validateCitizenship()){
+        if(user.isCitizenshipExist()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
         }
         if(user.validateDocument()) {
@@ -58,6 +64,9 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional
     @Override
     public void update(UserRequest user) {
@@ -66,7 +75,7 @@ public class UserServiceImpl implements UserService {
         if(user.getOfficeId() != null){
             result.setOffice(officeDao.getReference(user.getOfficeId()));
         }
-        if(user.validateCitizenship()){
+        if(user.isCitizenshipExist()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
         }
         User fromDb = userDao.update(result);
@@ -79,6 +88,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = true)
     @Override
     public List<UserDtoAll> getAll(UserFilter filter) {
@@ -86,6 +98,9 @@ public class UserServiceImpl implements UserService {
         return UserDtoAll.mapToDtoList(userDao.getAll(filter));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserDtoId getById(Long id) {
         return userDao.getById(id);

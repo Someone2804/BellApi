@@ -6,7 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO for list of offices
+ */
 public class OfficeDtoAll {
+
     private Long id;
 
     private String name;
@@ -44,12 +48,17 @@ public class OfficeDtoAll {
         isActive = active;
     }
 
-    public static OfficeDtoAll mapToDto(Office office){
+    private static OfficeDtoAll mapToDto(Office office){
         return new OfficeDtoAll(office.getId(),
                 office.getName(),
                 office.isActive());
     }
 
+    /**
+     * Map list of entity's to dto list
+     * @param offices
+     * @return
+     */
     public static List<OfficeDtoAll> mapToDtoList(List<Office> offices){
         List<OfficeDtoAll> result = new ArrayList<>();
         for(Office office : offices){

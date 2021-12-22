@@ -5,6 +5,10 @@ import com.bell.BellApi.model.User;
 
 import java.util.Date;
 
+
+/**
+ * Request DTO for {@link User}
+ */
 public class UserRequest {
     private Long id;
 
@@ -152,12 +156,19 @@ public class UserRequest {
         isIdentified = identified;
     }
 
+    /**
+     * Validate fields for save
+     */
     public void validateForSave(){
         if(getOfficeId() == null){
             throw new IllegalStateException("Missed required parameter officeId");
         }
         validateFields();
     }
+
+    /**
+     * Validate fields for update
+     */
     public void validateForUpdate(){
         if(getId() == null){
             throw new IllegalStateException("Missed required parameter id");
@@ -165,6 +176,10 @@ public class UserRequest {
         validateFields();
     }
 
+    /**
+     * Validate document if exist
+     * @return true if exist
+     */
     public boolean validateDocument() {
         if (getDocCode() != null || getDocName() != null) {
             if (getDocDate() == null) {
@@ -178,15 +193,28 @@ public class UserRequest {
         return false;
     }
 
-    public boolean validateCitizenship(){
+    /**
+     * Check if citizenship exist
+     * @return true is exist
+     */
+    public boolean isCitizenshipExist(){
         return !isNullOrEmpty(getCitizenshipCode());
     }
 
+    /**
+     * Fills document
+     * @param document
+     */
     public void fillDocument(Document document){
         document.setDocDate(getDocDate());
         document.setDocNumber(getDocNumber());
     }
 
+    /**
+     * Map DTO to entity
+     * @param userRequest
+     * @return
+     */
     public static User mapToEntity(UserRequest userRequest){
         User user = new User();
         user.setId(userRequest.getId());

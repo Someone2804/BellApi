@@ -1,5 +1,9 @@
 package com.bell.BellApi.dto.filter;
 
+
+/**
+ * Filter for {@link com.bell.BellApi.model.Organization}
+ */
 public class OrgFilter {
 
     private String name;
@@ -38,6 +42,9 @@ public class OrgFilter {
         isActive = active;
     }
 
+    /**
+     * Validate fields
+     */
     public void validate(){
         if(getName() == null || getName().isBlank()){
             throw new IllegalStateException("Missed required parameter name");

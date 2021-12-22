@@ -11,6 +11,9 @@ import javax.persistence.Version;
 import java.util.Set;
 
 
+/**
+ * Document name
+ */
 @Entity
 @Table(name = "Document_name")
 public class DocName {

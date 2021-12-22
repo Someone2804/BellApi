@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
@@ -26,6 +29,9 @@ public class OfficeServiceImpl implements OfficeService {
         this.organizationDao = organizationDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional
     @Override
     public void add(OfficeRequest office) {
@@ -35,6 +41,9 @@ public class OfficeServiceImpl implements OfficeService {
         officeDao.save(officeEntity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional
     @Override
     public void update(OfficeRequest office) {
@@ -42,6 +51,9 @@ public class OfficeServiceImpl implements OfficeService {
         officeDao.update(OfficeRequest.mapToEntity(office));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = true)
     @Override
     public List<OfficeDtoAll> getAll(OfficeFilter filter) {
@@ -49,6 +61,9 @@ public class OfficeServiceImpl implements OfficeService {
         return OfficeDtoAll.mapToDtoList(officeDao.getAll(filter));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = true)
     @Override
     public OfficeDtoId getById(Long id) {

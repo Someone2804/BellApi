@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class OrganizationDaoImpl implements OrganizationDao {
 
@@ -31,6 +34,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Organization> getAll(OrgFilter filter) {
         CriteriaQuery<Organization> cq = buildCriteria(filter);
@@ -38,16 +44,25 @@ public class OrganizationDaoImpl implements OrganizationDao {
         return organizations.getResultList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Organization> getById(Long id) {
         return Optional.ofNullable(entityManager.find(Organization.class, id));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Organization organization) {
         entityManager.persist(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(Organization organization) {
         Organization fromDb = getById(organization.getId()).orElseThrow(
@@ -56,6 +71,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
                 organization.getPhone() == null ? "phone" : null);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Organization getReference(Long id) {
         return entityManager.getReference(Organization.class, id);

@@ -13,6 +13,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import java.util.UUID;
 
+
+/**
+ * Exception handler
+ */
 @RestControllerAdvice
 public class ExHandler {
 

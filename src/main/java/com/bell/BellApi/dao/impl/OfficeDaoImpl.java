@@ -22,6 +22,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class OfficeDaoImpl implements OfficeDao {
 
@@ -33,6 +36,9 @@ public class OfficeDaoImpl implements OfficeDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Office> getAll(OfficeFilter filter) {
         CriteriaQuery<Office> cq = buildCriteria(filter);
@@ -41,6 +47,9 @@ public class OfficeDaoImpl implements OfficeDao {
         return tq.getResultList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office getById(Long id) {
         TypedQuery<Office> officeQuery = entityManager.createNamedQuery("Office.getById", Office.class);
@@ -49,11 +58,17 @@ public class OfficeDaoImpl implements OfficeDao {
         return officeQuery.getSingleResult();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Office office) {
         entityManager.persist(office);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(Office office) {
         Office fromDb = getById(office.getId());
@@ -67,6 +82,9 @@ public class OfficeDaoImpl implements OfficeDao {
                 "organization");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office getReference(Long officeId) {
         return entityManager.getReference(Office.class, officeId);

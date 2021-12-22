@@ -1,7 +1,9 @@
 package com.bell.BellApi.dto.error.response;
 
 public class ErrorResponse {
+
     private String error;
+
     private String code;
 
     public ErrorResponse(String error) {

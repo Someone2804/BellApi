@@ -5,6 +5,9 @@ import com.bell.BellApi.model.Country;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO for list of countries
+ */
 public class CountryResponse {
     private String name;
 
@@ -26,13 +29,18 @@ public class CountryResponse {
         this.code = code;
     }
 
-    public static CountryResponse mapToDto(Country country){
+    private static CountryResponse mapToDto(Country country){
         CountryResponse referenceResponse = new CountryResponse();
         referenceResponse.setCode(country.getCitizenshipCode());
         referenceResponse.setName(country.getCitizenshipName());
         return referenceResponse;
     }
 
+    /**
+     * Map entity list to DTO list
+     * @param country
+     * @return
+     */
     public static List<CountryResponse> mapToListDto(List<Country> country){
         List<CountryResponse> list = new ArrayList<>();
         for(Country c : country){

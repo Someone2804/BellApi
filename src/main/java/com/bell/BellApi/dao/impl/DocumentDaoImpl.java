@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class DocumentDaoImpl implements DocumentDao {
 
@@ -20,11 +23,17 @@ public class DocumentDaoImpl implements DocumentDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Document document) {
         entityManager.persist(document);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(Document document) {
         Document fromDb = entityManager.find(Document.class, document.getUser().getId());

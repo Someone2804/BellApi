@@ -2,6 +2,10 @@ package com.bell.BellApi.dto.office.request;
 
 import com.bell.BellApi.model.Office;
 
+
+/**
+ * Request DTO for {@link Office}
+ */
 public class OfficeRequest {
 
     private Long id;
@@ -73,6 +77,9 @@ public class OfficeRequest {
         isActive = active;
     }
 
+    /**
+     * Validate fields for save
+     */
     public void validateForSave(){
         if(getOrgId() == null){
             throw new IllegalStateException("Missed required parameter orgId");
@@ -80,6 +87,9 @@ public class OfficeRequest {
         checkParam();
     }
 
+    /**
+     * Validate fields for update
+     */
     public void validateForUpdate(){
         if(getId() == null){
             throw new IllegalStateException("Missed required parameter id");
@@ -87,6 +97,11 @@ public class OfficeRequest {
         checkParam();
     }
 
+    /**
+     * Create entity from dto
+     * @param office
+     * @return
+     */
     public static Office mapToEntity(OfficeRequest office){
         Office result = new Office();
         result.setId(office.getId());

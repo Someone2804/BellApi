@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+/**
+ *  Organization controller
+ */
 @RestController
 @RequestMapping("api/organization")
 public class OrganizationController {
@@ -26,24 +30,41 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
+    /**
+     * Mapping for /list
+     * @param orgFilter
+     * @return organization dto's list
+     */
     @PostMapping("/list")
     public List<OrganizationDtoAll> getAll(@RequestBody OrgFilter orgFilter){
         List<OrganizationDtoAll> list = organizationService.getAll(orgFilter);
         return list;
     }
 
+    /**
+     * Mapping for /{id}
+     * @param id
+     * @return organization dto
+     */
     @GetMapping("/{id}")
     public OrganizationDtoId getById(@PathVariable Long id){
         OrganizationDtoId org = organizationService.getById(id);
         return org;
     }
 
+    /**
+     * Mapping for /add
+     * @param organization
+     */
     @PostMapping("/add")
     public void add(@RequestBody OrganizationRequest organization){
         organizationService.add(organization);
     }
 
-
+    /**
+     * Mapping for /update
+     * @param organization
+     */
     @PostMapping("/update")
     public void update(@RequestBody OrganizationRequest organization){
         organizationService.update(organization);

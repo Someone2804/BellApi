@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * DTO for user found by id
+ */
 public class UserDtoId {
 
     private Long id;
@@ -134,6 +137,11 @@ public class UserDtoId {
         isIdentified = identified;
     }
 
+    /**
+     * Map entity to DTO
+     * @param user
+     * @return
+     */
     public static UserDtoId mapToDto(User user){
         UserDtoId result = new UserDtoId();
         result.setId(user.getId());

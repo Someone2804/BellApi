@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import java.util.Date;
 
+
+/**
+ * Document
+ */
 @Entity
 @Table(name = "Document")
 public class Document {

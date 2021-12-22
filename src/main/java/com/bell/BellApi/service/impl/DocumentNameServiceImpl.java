@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class DocumentNameServiceImpl implements DocumentNameService {
 
@@ -19,6 +22,9 @@ public class DocumentNameServiceImpl implements DocumentNameService {
         this.documentNameDao = documentNameDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<DocNameResponse> getAll() {

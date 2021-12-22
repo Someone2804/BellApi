@@ -11,6 +11,10 @@ import javax.persistence.Version;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Organization
+ */
 @Entity
 @Table(name = "Organization")
 public class Organization {

@@ -1,5 +1,5 @@
 package com.bell.BellApi.service;
 
 /**
- * Service
+ * Package for service interfaces
  */

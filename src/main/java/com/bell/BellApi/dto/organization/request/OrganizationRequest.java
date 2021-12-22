@@ -2,6 +2,9 @@ package com.bell.BellApi.dto.organization.request;
 
 import com.bell.BellApi.model.Organization;
 
+/**
+ * Request DTO for {@link Organization}
+ */
 public class OrganizationRequest {
 
     private Long id;
@@ -95,6 +98,9 @@ public class OrganizationRequest {
         isActive = active;
     }
 
+    /**
+     * Validate fields for save
+     */
     public void validateForSave(){
         if(isNullOrEmpty(getName())){
             throw new IllegalStateException("Missed required parameter name");
@@ -111,33 +117,25 @@ public class OrganizationRequest {
         if(isNullOrEmpty(getAddress())){
             throw new IllegalStateException("Missed required parameter address");
         }
-        if(getName().length() > 50){
-            throw new IllegalStateException("Max characters for Name is 50");
-        }
-        if(getFullName().length() > 50){
-            throw new IllegalStateException("Max characters for fullName is 50");
-        }
-        if(getInn().length() > 12){
-            throw new IllegalStateException("Max characters for inn is 12");
-        }
-        if(getKpp().length() > 9){
-            throw new IllegalStateException("Max characters for kpp is 9");
-        }
-        if(getAddress().length() > 50){
-            throw new IllegalStateException("Max characters for address is 50");
-        }
-        if((getPhone() != null) && (getPhone().length() > 30)){
-            throw new IllegalStateException("Max characters for phone is 30");
-        }
+        checkFields();
     }
 
+    /**
+     * Validate fields for update
+     */
     public void validateForUpdate(){
         validateForSave();
         if(getId() == null){
             throw new IllegalStateException("Missed required parameter id");
         }
+        checkFields();
     }
 
+    /**
+     * Map DTO to entity
+     * @param request
+     * @return
+     */
     public static Organization mapToEntity(OrganizationRequest request){
         return new Organization(request.getId(),
                 request.getName(),
@@ -151,5 +149,26 @@ public class OrganizationRequest {
 
     private static boolean isNullOrEmpty(String s){
         return s == null || s.isBlank();
+    }
+
+    private void checkFields() {
+        if((!isNullOrEmpty(getName())) && (getName().length() > 50)){
+            throw new IllegalStateException("Max characters for Name is 50");
+        }
+        if((!isNullOrEmpty(getFullName())) && (getFullName().length() > 50)){
+            throw new IllegalStateException("Max characters for fullName is 50");
+        }
+        if((!isNullOrEmpty(getInn())) && (getInn().length() > 12)){
+            throw new IllegalStateException("Max characters for inn is 12");
+        }
+        if((!isNullOrEmpty(getKpp())) && (getKpp().length() > 9)){
+            throw new IllegalStateException("Max characters for kpp is 9");
+        }
+        if((!isNullOrEmpty(getAddress())) && (getAddress().length() > 50)){
+            throw new IllegalStateException("Max characters for address is 50");
+        }
+        if(!isNullOrEmpty(getPhone()) && (getPhone().length() > 30)){
+            throw new IllegalStateException("Max characters for phone is 30");
+        }
     }
 }

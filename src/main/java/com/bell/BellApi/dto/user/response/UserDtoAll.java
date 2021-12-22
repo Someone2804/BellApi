@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * DTO for users list
+ */
 public class UserDtoAll {
     private Long id;
 
@@ -58,7 +61,7 @@ public class UserDtoAll {
         this.position = position;
     }
 
-    public static UserDtoAll mapToDto(User user){
+    private static UserDtoAll mapToDto(User user){
         UserDtoAll result = new UserDtoAll();
         result.setId(user.getId());
         result.setFirstName(user.getFirstName());
@@ -68,6 +71,11 @@ public class UserDtoAll {
         return result;
     }
 
+    /**
+     * Map entity list to DTO list
+     * @param users
+     * @return
+     */
     public static List<UserDtoAll> mapToDtoList(List<User> users){
         List<UserDtoAll> result = new ArrayList<>();
         for(User user : users){

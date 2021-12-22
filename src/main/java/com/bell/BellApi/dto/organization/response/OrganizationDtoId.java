@@ -3,6 +3,9 @@ package com.bell.BellApi.dto.organization.response;
 import com.bell.BellApi.model.Organization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * DTO for organization found by id
+ */
 public class OrganizationDtoId {
 
     private long id;
@@ -97,6 +100,11 @@ public class OrganizationDtoId {
         isActive = active;
     }
 
+    /**
+     * Map entity to DTO
+     * @param organization
+     * @return
+     */
     public static OrganizationDtoId mapToDto(Organization organization){
         return new OrganizationDtoId(organization.getId(),
                 organization.getName(),

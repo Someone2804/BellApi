@@ -9,6 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class PositionDaoImpl implements PositionDao {
 
@@ -20,6 +23,9 @@ public class PositionDaoImpl implements PositionDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Position getByName(String name) {
         TypedQuery<Position> query = entityManager.createQuery("select p from Position p where p.positionName=:name", Position.class);

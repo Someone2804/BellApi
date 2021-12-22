@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+/**
+ * Reference controller
+ */
 @RestController
 @RequestMapping("/api")
 public class ReferenceController {
@@ -25,11 +29,19 @@ public class ReferenceController {
         this.countryService = countryService;
     }
 
+    /**
+     * Mapping for /docs
+     * @return docs dto's list
+     */
     @GetMapping("/docs")
     public List<DocNameResponse> getAllDocuments(){
         return documentNameService.getAll();
     }
 
+    /**
+     * Mapping for /countries
+     * @return countries dto's list
+     */
     @GetMapping("/countries")
     public List<CountryResponse> getAllCountries(){
         return countryService.getAll();

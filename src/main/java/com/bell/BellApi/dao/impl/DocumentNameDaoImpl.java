@@ -10,6 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class DocumentNameDaoImpl implements DocumentNameDao {
 
@@ -22,6 +25,9 @@ public class DocumentNameDaoImpl implements DocumentNameDao {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DocName getByCode(String docCode) {
         TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docCode=:code", DocName.class);
@@ -29,6 +35,9 @@ public class DocumentNameDaoImpl implements DocumentNameDao {
         return query.getSingleResult();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DocName getByName(String docName) {
         TypedQuery<DocName> query = entityManager.createQuery("select dm from DocName dm where dm.docName=:name", DocName.class);
@@ -36,6 +45,9 @@ public class DocumentNameDaoImpl implements DocumentNameDao {
         return query.getSingleResult();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<DocName> getAll() {
         return entityManager.createQuery("select dm from DocName dm", DocName.class).getResultList();

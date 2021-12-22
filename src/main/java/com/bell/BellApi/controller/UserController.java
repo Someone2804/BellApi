@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * User controller
+ */
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -26,24 +29,42 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    /**
+     * Mapping for /list
+     * @param filter
+     * @return user dto's list
+     */
     @PostMapping("/list")
     public List<UserDtoAll> getAll(@RequestBody UserFilter filter){
         List<UserDtoAll> list = userService.getAll(filter);
         return list;
     }
 
+    /**
+     * Mapping for /{id}
+     * @param id
+     * @return user dto
+     */
     @GetMapping("/{id}")
     public UserDtoId getById(@PathVariable Long id){
         UserDtoId user = userService.getById(id);
         return user;
     }
 
+    /**
+     * Mapping for /add
+     * @param user
+     */
     @PostMapping("/add")
     public void add(@RequestBody UserRequest user){
         userService.add(user);
     }
 
-
+    /**
+     * Mapping for /update
+     * @param user
+     */
     @PostMapping("/update")
     public void update(@RequestBody UserRequest user){
         userService.update(user);

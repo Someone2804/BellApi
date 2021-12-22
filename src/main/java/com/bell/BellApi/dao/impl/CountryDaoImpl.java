@@ -10,6 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Component
 public class CountryDaoImpl implements CountryDao {
 
@@ -21,6 +24,9 @@ public class CountryDaoImpl implements CountryDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Country getByCode(String code) {
         TypedQuery<Country> query = entityManager.createQuery("select c from Country c where c.citizenshipCode=:code", Country.class);
@@ -28,6 +34,9 @@ public class CountryDaoImpl implements CountryDao {
         return query.getSingleResult();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Country> getAll() {
         return entityManager.createQuery("select c from Country c", Country.class).getResultList();

@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO for list of organizations
+ */
 public class OrganizationDtoAll {
 
     private Long id;
@@ -45,12 +48,17 @@ public class OrganizationDtoAll {
         isActive = active;
     }
 
-    public static OrganizationDtoAll mapToDto(Organization organization){
+    private static OrganizationDtoAll mapToDto(Organization organization){
         return new OrganizationDtoAll(organization.getId(),
                                     organization.getName(),
                                     organization.isActive());
     }
 
+    /**
+     * Map entity list to DTO list
+     * @param organizations
+     * @return
+     */
     public static List<OrganizationDtoAll> mapToDtoList(List<Organization> organizations){
         List<OrganizationDtoAll> result = new ArrayList<>();
         for(Organization organization : organizations){

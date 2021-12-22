@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
@@ -25,6 +28,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void add(OrganizationRequest organization) {
@@ -32,6 +38,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDao.save(OrganizationRequest.mapToEntity(organization));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void update(OrganizationRequest organization) {
@@ -39,6 +48,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDao.update(OrganizationRequest.mapToEntity(organization));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public OrganizationDtoId getById(Long id) {
@@ -47,6 +59,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         return OrganizationDtoId.mapToDto(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationDtoAll> getAll(OrgFilter filter) {

@@ -8,10 +8,35 @@ import com.bell.BellApi.dto.office.response.OfficeDtoId;
 
 import java.util.List;
 
+
+/**
+ * Service for {@link com.bell.BellApi.model.Office}
+ */
 public interface OfficeService {
 
-    void add(OfficeRequest organization);
-    void update(OfficeRequest organization);
+    /**
+     * Add office
+     * @param officeRequest
+     */
+    void add(OfficeRequest officeRequest);
+
+    /**
+     * Update office
+     * @param officeRequest
+     */
+    void update(OfficeRequest officeRequest);
+
+    /**
+     * Get all offices by filter
+     * @param filter
+     * @return {@link OfficeDtoAll}
+     */
     List<OfficeDtoAll> getAll(OfficeFilter filter);
+
+    /**
+     * Get office by id
+     * @param id
+     * @return {@link OfficeDtoId}
+     */
     OfficeDtoId getById(Long id);
 }

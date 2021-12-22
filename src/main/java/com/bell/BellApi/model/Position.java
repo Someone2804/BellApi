@@ -13,6 +13,10 @@ import javax.persistence.Version;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Position
+ */
 @Entity
 @Table(name = "Position")
 public class Position {

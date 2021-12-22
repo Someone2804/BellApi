@@ -1,5 +1,8 @@
 package com.bell.BellApi.dto.filter;
 
+/**
+ * Filter for {@link com.bell.BellApi.model.Office}
+ */
 public class OfficeFilter {
 
     private Long orgId;
@@ -49,6 +52,9 @@ public class OfficeFilter {
         isActive = active;
     }
 
+    /**
+     * Validate fields
+     */
     public void validate(){
         if(getOrgId() == null){
             throw new IllegalStateException("Missed required parameter orgId");

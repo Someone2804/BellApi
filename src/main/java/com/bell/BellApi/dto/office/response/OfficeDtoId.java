@@ -3,6 +3,9 @@ package com.bell.BellApi.dto.office.response;
 import com.bell.BellApi.model.Office;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * DTO for office found by id
+ */
 public class OfficeDtoId {
 
     private Long id;
@@ -64,6 +67,11 @@ public class OfficeDtoId {
         isActive = active;
     }
 
+    /**
+     * Map entity to DTO
+     * @param office
+     * @return
+     */
     public static OfficeDtoId mapToDto(Office office){
         return new OfficeDtoId(office.getId(),
                 office.getName(),

@@ -1,5 +1,8 @@
 package com.bell.BellApi.dto.filter;
 
+/**
+ * Filter for {@link com.bell.BellApi.model.User}
+ */
 public class UserFilter {
 
     private Long officeId;
@@ -82,6 +85,9 @@ public class UserFilter {
         this.citizenshipCode = citizenshipCode;
     }
 
+    /**
+     * Validate fields
+     */
     public void validate() {
         if(getOfficeId() == null){
             throw new IllegalStateException("Missing required parameter id");

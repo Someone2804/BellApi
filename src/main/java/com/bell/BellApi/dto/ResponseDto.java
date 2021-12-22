@@ -1,5 +1,8 @@
 package com.bell.BellApi.dto;
 
+/**
+ * Wrapper for all DTO except for error's
+ */
 public class ResponseDto {
     private Object data;
 

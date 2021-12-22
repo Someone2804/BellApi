@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class CountryServiceImpl implements CountryService {
 
@@ -19,6 +22,9 @@ public class CountryServiceImpl implements CountryService {
         this.countryDao = countryDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<CountryResponse> getAll() {
