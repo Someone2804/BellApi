@@ -75,14 +75,14 @@ public class OfficeRequest {
 
     public void validateForSave(){
         if(getOrgId() == null){
-            throw new IllegalStateException("Missing required parameter orgId");
+            throw new IllegalStateException("Missed required parameter orgId");
         }
         checkParam();
     }
 
     public void validateForUpdate(){
         if(getId() == null){
-            throw new IllegalStateException("Missing required parameter id");
+            throw new IllegalStateException("Missed required parameter id");
         }
         checkParam();
     }
@@ -99,10 +99,10 @@ public class OfficeRequest {
 
     private void checkParam(){
         if(isNullOrEmpty(getName())){
-            throw new IllegalStateException("Missing required parameter name");
+            throw new IllegalStateException("Missed required parameter name");
         }
         if(isNullOrEmpty(getAddress())){
-            throw new IllegalStateException("Missing required parameter address");
+            throw new IllegalStateException("Missed required parameter address");
         }
         if(getAddress().length() > 50){
             throw new IllegalStateException("Max characters for address is 50");

@@ -18,6 +18,10 @@ public class OrgFilter {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getInn() {
         return inn;
     }
@@ -36,7 +40,7 @@ public class OrgFilter {
 
     public void validate(){
         if(getName() == null || getName().isBlank()){
-            throw new IllegalStateException("Missed require parameter name");
+            throw new IllegalStateException("Missed required parameter name");
         }
     }
 }

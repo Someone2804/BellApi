@@ -1,6 +1,7 @@
 package com.bell.BellApi.dto.user.response;
 
 import com.bell.BellApi.model.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class UserDtoId {
 
     private String citizenshipCode;
 
+    @JsonProperty("isIdentified")
     private boolean isIdentified;
 
 

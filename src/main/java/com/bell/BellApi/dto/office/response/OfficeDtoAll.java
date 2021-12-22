@@ -1,6 +1,7 @@
 package com.bell.BellApi.dto.office.response;
 
 import com.bell.BellApi.model.Office;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,10 @@ public class OfficeDtoAll {
 
     private String name;
 
-    private Boolean isActive;
+    @JsonProperty("isActive")
+    private boolean isActive;
 
-    public OfficeDtoAll(Long id, String name, Boolean isActive) {
+    public OfficeDtoAll(Long id, String name, boolean isActive) {
         this.id = id;
         this.name = name;
         this.isActive = isActive;
@@ -34,11 +36,11 @@ public class OfficeDtoAll {
         this.name = name;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 

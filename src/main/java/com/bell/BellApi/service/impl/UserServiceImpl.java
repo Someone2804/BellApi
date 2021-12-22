@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService {
         if(user.validateCitizenship()){
             result.setCitizenship(countryDao.getByCode(user.getCitizenshipCode()));
         }
-        result.addPosition(positionDao.getByName(user.getPosition()));
         User fromDb = userDao.update(result);
+        fromDb.addPosition(positionDao.getByName(user.getPosition()));
         if(user.validateDocument()) {
             Document document = createDocument(user);
             document.setUser(fromDb);

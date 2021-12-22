@@ -1,13 +1,18 @@
 package com.bell.BellApi.dto.organization.response;
 
 import com.bell.BellApi.model.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrganizationDtoAll {
+
     private Long id;
+
     private String name;
+
+    @JsonProperty("isActive")
     private boolean isActive;
 
     public OrganizationDtoAll(Long id, String name, boolean isActive) {

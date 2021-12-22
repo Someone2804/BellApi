@@ -108,8 +108,7 @@ public class UserDaoImpl implements UserDao {
                 user.getMiddleName() == null ? "middleName" : null,
                 user.getPhone() == null ? "phone" : null,
                 "document",
-                user.getOffice() == null ? "office" : null,
-                user.getPosition() == null ? "position" : null);
+                user.getOffice() == null ? "office" : null);
 
         return fromDb;
     }
@@ -134,13 +133,13 @@ public class UserDaoImpl implements UserDao {
         return (root, query, criteriaBuilder) -> {
             predicates.add(criteriaBuilder.equal(root.get("office"), filter.getOfficeId()));
             if(filter.getFirstName() != null){
-                predicates.add(criteriaBuilder.equal(root.get("firstName"), filter.getFirstName()));
+                predicates.add(criteriaBuilder.like(root.get("firstName"), "%" + filter.getFirstName() + "%"));
             }
             if(filter.getSecondName() != null){
-                predicates.add(criteriaBuilder.equal(root.get("secondName"), filter.getSecondName()));
+                predicates.add(criteriaBuilder.like(root.get("secondName"), "%" + filter.getSecondName() + "%"));
             }
             if(filter.getMiddleName() != null){
-                predicates.add(criteriaBuilder.equal(root.get("middleName"), filter.getMiddleName()));
+                predicates.add(criteriaBuilder.like(root.get("middleName"), "%" + filter.getMiddleName() + "%"));
             }
             if(filter.getDocCode() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("document").get("documentName").get("docCode"), filter.getDocCode()));

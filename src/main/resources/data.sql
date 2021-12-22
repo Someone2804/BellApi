@@ -7,7 +7,7 @@ INSERT INTO ORGANIZATION(id, VERSION, SHORT_NAME, FULL_NAME, INN, KPP, ADDRESS, 
 
 INSERT INTO OFFICE(id, VERSION, OFFICE_NAME, ADDRESS, IS_ACTIVE, ORGANIZATION_ID) VALUES
 (1, 1, 'Bell office1', 'qwerty', 1, 1),
-(2, 1, 'Bell office2', '916', 1, 1),
+(2, 1, 'Bell office2', 'qwerty', 1, 1),
 (3, 1, 'Bell office3', 'qwerty', 1, 2);
 
 INSERT INTO POSITION(id, VERSION, POSITION_NAME) VALUES

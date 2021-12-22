@@ -154,13 +154,13 @@ public class UserRequest {
 
     public void validateForSave(){
         if(getOfficeId() == null){
-            throw new IllegalStateException("Missing required parameter officeId");
+            throw new IllegalStateException("Missed required parameter officeId");
         }
         validateFields();
     }
     public void validateForUpdate(){
         if(getId() == null){
-            throw new IllegalStateException("Missing required parameter id");
+            throw new IllegalStateException("Missed required parameter id");
         }
         validateFields();
     }
@@ -168,10 +168,10 @@ public class UserRequest {
     public boolean validateDocument() {
         if (getDocCode() != null || getDocName() != null) {
             if (getDocDate() == null) {
-                throw new IllegalStateException("Missing required parameter docDate");
+                throw new IllegalStateException("Missed required parameter docDate");
             }
             if (isNullOrEmpty(getDocNumber())) {
-                throw new IllegalStateException("Missing required parameter docNumber");
+                throw new IllegalStateException("Missed required parameter docNumber");
             }
             return true;
         }
@@ -200,10 +200,10 @@ public class UserRequest {
 
     private void validateFields(){
         if(isNullOrEmpty(getFirstName())){
-            throw new IllegalStateException("Missing required parameter firstName");
+            throw new IllegalStateException("Missed required parameter firstName");
         }
         if(isNullOrEmpty(getPosition())){
-            throw new IllegalStateException("Missing required parameter position");
+            throw new IllegalStateException("Missed required parameter position");
         }
         if(getFirstName().length() > 50){
             throw new IllegalStateException("Max characters for firstName is 50");

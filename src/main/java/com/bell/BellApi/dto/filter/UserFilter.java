@@ -16,6 +16,16 @@ public class UserFilter {
 
     private String citizenshipCode;
 
+    public UserFilter(Long officeId, String firstName, String secondName, String middleName, String position, String docCode, String citizenshipCode) {
+        this.officeId = officeId;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.docCode = docCode;
+        this.citizenshipCode = citizenshipCode;
+    }
+
     public Long getOfficeId() {
         return officeId;
     }

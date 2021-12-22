@@ -1,6 +1,7 @@
 package com.bell.BellApi.dto.office.response;
 
 import com.bell.BellApi.model.Office;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OfficeDtoId {
 
@@ -12,6 +13,7 @@ public class OfficeDtoId {
 
     private String phone;
 
+    @JsonProperty("isActive")
     private boolean isActive;
 
     public OfficeDtoId(Long id, String name, String address, String phone, boolean isActive) {

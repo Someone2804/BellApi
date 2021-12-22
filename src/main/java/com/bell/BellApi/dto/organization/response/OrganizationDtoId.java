@@ -1,6 +1,7 @@
 package com.bell.BellApi.dto.organization.response;
 
 import com.bell.BellApi.model.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OrganizationDtoId {
 
@@ -18,6 +19,7 @@ public class OrganizationDtoId {
 
     private String phone;
 
+    @JsonProperty("isActive")
     private boolean isActive;
 
     public OrganizationDtoId(long id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
