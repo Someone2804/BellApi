@@ -2,7 +2,7 @@
 ### Info
 ```
 DB    - jdbc:h2:mem:bellApi_db
-Stack - jdbc/jpa/hibernate/boot
+Stack - jdbc/jpa/h2/boot
 Port  - 8080
 ```
 ### Implementation examples
