@@ -48,6 +48,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void add(UserRequest user) {
+        if(user == null){
+            throw new IllegalArgumentException("UserRequest is null");
+        }
         user.validateForSave();
         User result = UserRequest.mapToEntity(user);
         result.setOffice(officeDao.getReference(user.getOfficeId()));
@@ -70,6 +73,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void update(UserRequest user) {
+        if(user == null){
+            throw new IllegalArgumentException("UserRequest is null");
+        }
         user.validateForUpdate();
         User result = UserRequest.mapToEntity(user);
         if(user.getOfficeId() != null){
@@ -94,6 +100,9 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public List<UserDtoAll> getAll(UserFilter filter) {
+        if(filter == null){
+            throw new IllegalArgumentException("UserFilter is null");
+        }
         filter.validate();
         return UserDtoAll.mapToDtoList(userDao.getAll(filter));
     }
@@ -103,6 +112,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDtoId getById(Long id) {
+        if(id == null){
+            throw new IllegalArgumentException("Id is null");
+        }
         return userDao.getById(id);
     }
 

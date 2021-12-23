@@ -35,6 +35,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     @Override
     public void add(OfficeRequest office) {
+        if(office == null){
+            throw new IllegalArgumentException("OfficeRequest is null");
+        }
         office.validateForSave();
         Office officeEntity = OfficeRequest.mapToEntity(office);
         officeEntity.setOrganization(organizationDao.getReference(office.getOrgId()));
@@ -47,6 +50,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional
     @Override
     public void update(OfficeRequest office) {
+        if(office == null){
+            throw new IllegalArgumentException("OfficeRequest is null");
+        }
         office.validateForUpdate();
         officeDao.update(OfficeRequest.mapToEntity(office));
     }
@@ -57,6 +63,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional(readOnly = true)
     @Override
     public List<OfficeDtoAll> getAll(OfficeFilter filter) {
+        if(filter == null){
+            throw new IllegalArgumentException("OfficeFilter is null");
+        }
         filter.validate();
         return OfficeDtoAll.mapToDtoList(officeDao.getAll(filter));
     }
@@ -67,6 +76,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Transactional(readOnly = true)
     @Override
     public OfficeDtoId getById(Long id) {
+        if(id == null){
+            throw new IllegalArgumentException("Id is null");
+        }
         return OfficeDtoId.mapToDto(officeDao.getById(id));
     }
 }
