@@ -9,7 +9,7 @@ Port  - 8080
 
 Plain JDBC - [link](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/UserDaoImpl.java#L73)
 
-JPQL - [PositionDaoImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/PositionDaoImpl.java#L30), [DocumentNameJavaImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/DocumentNameDaoImpl.java), [CountryDaoImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/CountryDaoImpl.java)
+JPQL - [PositionDaoImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/PositionDaoImpl.java#L30), [DocumentNameDaoImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/DocumentNameDaoImpl.java), [CountryDaoImpl](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/CountryDaoImpl.java)
 
 JPA - almost all project
 
