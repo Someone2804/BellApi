@@ -15,14 +15,14 @@ public interface OrganizationDao {
     /**
      * Get all organizations by {@link OrgFilter}
      * @param filter
-     * @return
+     * @return list of {@link Organization}
      */
     List<Organization> getAll(OrgFilter filter);
 
     /**
      * Get organization by id
      * @param id
-     * @return
+     * @return {@link Optional} {@link Organization}
      */
     Optional<Organization> getById(Long id);
 
@@ -41,7 +41,7 @@ public interface OrganizationDao {
     /**
      * Get organization reference
      * @param id
-     * @return
+     * @return {@link Organization}
      */
     Organization getReference(Long id);
 }

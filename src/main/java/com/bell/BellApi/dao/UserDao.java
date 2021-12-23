@@ -15,14 +15,14 @@ public interface UserDao {
     /**
      * Get all users by {@link UserFilter}
      * @param filter
-     * @return
+     * @return list of {@link User}
      */
     List<User> getAll(UserFilter filter);
 
     /**
-     * Get user by id
+     * Get user by id with jdbc
      * @param id
-     * @return
+     * @return {@link UserDtoId}
      */
     UserDtoId getById(Long id);
 
@@ -42,7 +42,7 @@ public interface UserDao {
     /**
      * Get user reference
      * @param id
-     * @return
+     * @return {@link User}
      */
     User getReference(Long id);
 }

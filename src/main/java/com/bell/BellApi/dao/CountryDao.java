@@ -11,13 +11,13 @@ public interface CountryDao {
     /**
      * Get country by code
      * @param code
-     * @return
+     * @return {@link Country}
      */
     Country getByCode(String code);
 
     /**
      * Get all countries
-     * @return
+     * @return list of {@link Country}
      */
     List<Country> getAll();
 }

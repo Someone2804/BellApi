@@ -11,7 +11,7 @@ public interface PositionDao {
     /**
      * Get position by name
      * @param name
-     * @return
+     * @return {@link Position}
      */
     Position getByName(String name);
 }

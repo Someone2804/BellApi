@@ -13,14 +13,14 @@ public interface OfficeDao {
     /**
      * Get all offices by {@link OfficeFilter}
      * @param filter
-     * @return
+     * @return list of {@link Office}
      */
     List<Office> getAll(OfficeFilter filter);
 
     /**
      * Get office by id
      * @param id
-     * @return
+     * @return {@link Office}
      */
     Office getById(Long id);
 
@@ -39,7 +39,7 @@ public interface OfficeDao {
     /**
      * Get office reference
      * @param officeId
-     * @return
+     * @return {@link Office}
      */
     Office getReference(Long officeId);
 }

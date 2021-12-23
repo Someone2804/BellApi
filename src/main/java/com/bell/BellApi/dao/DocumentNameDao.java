@@ -20,13 +20,13 @@ public interface DocumentNameDao {
     /**
      * Get document name by name
      * @param docName
-     * @return
+     * @return {@link DocumentNameDao}
      */
     DocName getByName(String docName);
 
     /**
      * Get all documents
-     * @return
+     * @return list of {@link DocumentNameDao}
      */
     List<DocName> getAll();
 }
