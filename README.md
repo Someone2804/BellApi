@@ -5,6 +5,17 @@ DB    - jdbc:h2:mem:bellApi_db
 Stack - jdbc/jpa/h2/boot
 Port  - 8080
 ```
+
+### Build project
+```
+mvn clear package
+```
+
+### Start project
+```
+mvn spring-boot:start
+```
+
 ### Implementation examples
 
 Plain JDBC - [link](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/UserDaoImpl.java#L73)
