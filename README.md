@@ -1,10 +1,27 @@
 ## Homework project for Bell Integrator
 ### Info
-```
+
 DB    - jdbc:h2:mem:bellApi_db
+
 Stack - jdbc/jpa/h2/boot
+
 Port  - 8080
+
+
+### Build project
 ```
+mvn clear package
+```
+
+### Start project
+```
+mvn spring-boot:start
+```
+
+### Postman collection
+
+[![Run in Postman](https://s3.amazonaws.com/postman-static/run-button.png)](https://app.getpostman.com/run-collection/50578736980cebc07900)
+
 ### Implementation examples
 
 Plain JDBC - [link](https://github.com/Someone2804/BellApi/blob/main/src/main/java/com/bell/BellApi/dao/impl/UserDaoImpl.java#L73)
