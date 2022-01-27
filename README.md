@@ -3,7 +3,7 @@
 
 DB    - jdbc:h2:mem:bellApi_db
 
-Stack - jdbc/jpa/h2/boot
+Stack - jdbc/jpa/h2/boot/aop
 
 Port  - 8080
 
