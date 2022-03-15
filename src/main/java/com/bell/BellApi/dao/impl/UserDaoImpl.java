@@ -8,6 +8,7 @@ import com.bell.BellApi.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -133,6 +134,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getReference(Long id) {
         return entityManager.getReference(User.class, id);
+    }
+
+    @Override
+    public User getByUsername(String username){
+        TypedQuery<User> userq = entityManager.createQuery("select u from User u where u.username=:username", User.class);
+        userq.setParameter("username", username);
+        User user = userq.getSingleResult();
+        if(user == null){
+            throw new UsernameNotFoundException("User with username: " + username + " not found");
+        }
+        return user;
     }
 
     private CriteriaQuery<User> buildCriteria(UserFilter filter) {

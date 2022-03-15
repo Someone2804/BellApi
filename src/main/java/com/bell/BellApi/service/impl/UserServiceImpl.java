@@ -14,6 +14,9 @@ import com.bell.BellApi.model.Document;
 import com.bell.BellApi.model.User;
 import com.bell.BellApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,7 @@ import java.util.List;
  * {@inheritDoc}
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDao userDao;
     private final OfficeDao officeDao;
@@ -40,6 +43,13 @@ public class UserServiceImpl implements UserService {
         this.documentNameDao = documentNameDao;
         this.countryDao = countryDao;
         this.positionDao = positionDao;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User userFromDb = userDao.getByUsername(username);
+        return new org.springframework.security.core.userdetails.User(userFromDb.getUsername(), userFromDb.getPassword(), userFromDb.getAuthorities());
     }
 
     /**

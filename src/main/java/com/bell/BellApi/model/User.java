@@ -1,8 +1,17 @@
 package com.bell.BellApi.model;
 
+import com.bell.BellApi.model.role.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +23,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +34,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "Usr")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +45,18 @@ public class User {
      */
     @Version
     private Integer version;
+
+    @Column(name = "username", length = 30, nullable = false, unique = true)
+    private String username;
+
+    @Column(name = "password", length = 72, nullable = false)
+    private String password;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "usr_id"))
+    @Column(name = "name")
+    @Enumerated(value = EnumType.STRING)
+    private Set<Role> roles;
 
     /**
      *  First name
@@ -102,6 +125,43 @@ public class User {
         this.id = id;
         this.firstName = firstName;
         this.position = position;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<SimpleGrantedAuthority> authority = new ArrayList<>();
+        roles.forEach(role -> authority.add(new SimpleGrantedAuthority(role.name())));
+        return authority;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     /**

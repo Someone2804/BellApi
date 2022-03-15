@@ -45,4 +45,6 @@ public interface UserDao {
      * @return {@link User}
      */
     User getReference(Long id);
+
+    User getByUsername(String username);
 }
