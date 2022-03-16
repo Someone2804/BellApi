@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Usr
 );
 
 CREATE TABLE IF NOT EXISTS usr_role(
-    usr_id INTEGER NOT NULL,
+    usr_id INTEGER PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL
 );
 
@@ -89,8 +89,6 @@ CREATE TABLE IF NOT EXISTS Usr_Position
 CREATE INDEX IF NOT EXISTS IX_Usr_Position_Id ON Usr_Position (position_id);
 ALTER TABLE Usr_Position
     ADD FOREIGN KEY (usr_id) REFERENCES Usr (id);
-
-CREATE INDEX IF NOT EXISTS IX_Usr_Role_Id ON usr_role (usr_id);
 
 CREATE INDEX IF NOT EXISTS IX_Position_Usr_Id ON Usr_Position (usr_id);
 ALTER TABLE Usr_Position

@@ -18,7 +18,6 @@ VALUES (1, 1, 'Java Senior'),
 
 INSERT INTO USR_ROLE(usr_id, NAME)
 VALUES (1, 'ROLE_USER'),
-       (1, 'ROLE_ADMIN'),
        (2, 'ROLE_EDITOR'),
        (3, 'ROLE_ADMIN');
 
