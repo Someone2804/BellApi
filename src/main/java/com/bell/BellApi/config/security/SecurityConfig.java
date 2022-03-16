@@ -26,12 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("api/organization").permitAll()
-                .antMatchers(HttpMethod.POST, "**/add", "**/update").hasAnyRole("EDITOR", "ADMIN")
-                .anyRequest().authenticated()
+                    .authorizeRequests()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/**/add").hasRole("ADMIN")
+                    .antMatchers("/ **/update").hasRole("EDITOR")
+                    .anyRequest().fullyAuthenticated()
                 .and()
-                .httpBasic();
+                    .logout().logoutUrl("/api/logout").permitAll()
+                .and()
+                    .httpBasic();
     }
 
     @Override
@@ -40,19 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public RoleHierarchy roleHierarchy(){
+    public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_EDITOR and ROLE_EDITOR > ROLE_USER");
+        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_EDITOR \n ROLE_EDITOR > ROLE_USER");
         return roleHierarchy;
     }
 
     @Bean
-    public DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler(){
+    public DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler() {
         DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = new DefaultWebSecurityExpressionHandler();
         defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy());
         return defaultWebSecurityExpressionHandler;

@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userFromDb = userDao.getByUsername(username);
-        return new org.springframework.security.core.userdetails.User(userFromDb.getUsername(), userFromDb.getPassword(), userFromDb.getAuthorities());
+        return userFromDb.getSecurityUser();
     }
 
     /**
