@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Usr
     version        INTEGER     NOT NULL,
     username       VARCHAR(30) NOT NULL UNIQUE,
     password       VARCHAR(72) NOT NULL,
+    role_id        INTEGER     NOT NULL,
     first_name     VARCHAR(50) NOT NULL,
     second_name    VARCHAR(50),
     middle_name    VARCHAR(50),
@@ -55,9 +56,10 @@ CREATE TABLE IF NOT EXISTS Usr
     FOREIGN KEY (office_id) REFERENCES Office (id)
 );
 
-CREATE TABLE IF NOT EXISTS usr_role(
-    usr_id INTEGER PRIMARY KEY NOT NULL,
-    name VARCHAR(255) NOT NULL
+CREATE TABLE IF NOT EXISTS role
+(
+    id   INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(50)         NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Document_name

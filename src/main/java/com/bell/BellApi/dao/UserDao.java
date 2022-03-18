@@ -2,6 +2,7 @@ package com.bell.BellApi.dao;
 
 import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.response.UserDtoId;
+import com.bell.BellApi.model.SecurityUser;
 import com.bell.BellApi.model.User;
 
 import java.util.List;
@@ -46,5 +47,5 @@ public interface UserDao {
      */
     User getReference(Long id);
 
-    User getByUsername(String username);
+    SecurityUser getByUsername(String username);
 }

@@ -5,17 +5,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 
 @Embeddable
@@ -27,17 +24,24 @@ public class SecurityUser implements UserDetails {
     @Column(name = "password", length = 72, nullable = false)
     private String password;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "usr_id"))
-    @Column(name = "name")
-    @Enumerated(value = EnumType.STRING)
-    private Set<Role> roles;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<SimpleGrantedAuthority> authority = new ArrayList<>();
-        roles.forEach(role -> authority.add(new SimpleGrantedAuthority(role.name())));
+        authority.add(new SimpleGrantedAuthority(role.getName().name()));
         return authority;
+    }
+
+    public SecurityUser() {
+    }
+
+    public SecurityUser(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     @Override
@@ -48,6 +52,18 @@ public class SecurityUser implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRoles(Role role) {
+        this.role = role;
     }
 
     @Override

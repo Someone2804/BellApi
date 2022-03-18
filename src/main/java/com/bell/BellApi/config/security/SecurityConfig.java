@@ -2,7 +2,6 @@ package com.bell.BellApi.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers("/").permitAll()
                     .antMatchers("/**/add").hasRole("ADMIN")
-                    .antMatchers("/ **/update").hasRole("EDITOR")
+                    .antMatchers("/**/update").hasRole("EDITOR")
                     .anyRequest().fullyAuthenticated()
                 .and()
                     .logout().logoutUrl("/api/logout").permitAll()

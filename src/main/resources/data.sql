@@ -16,17 +16,17 @@ VALUES (1, 1, 'Java Senior'),
        (3, 1, 'Java Junior');
 
 
-INSERT INTO USR_ROLE(usr_id, NAME)
+INSERT INTO ROLE(id, NAME)
 VALUES (1, 'ROLE_USER'),
        (2, 'ROLE_EDITOR'),
        (3, 'ROLE_ADMIN');
 
 
-INSERT INTO USR(id, VERSION, USERNAME, PASSWORD, FIRST_NAME, IS_IDENTIFIED, OFFICE_ID, CITIZENSHIP_ID)
-VALUES (1, 1, 'Someone', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 'Bell worker', 1, 1, 1),
-       (2, 1, 'Someone1', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 'Bell worker2', 1, 1, 1),
-       (3, 1, 'Someone2', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 'Bell worker3', 1, 1, null),
-       (4, 1, 'Someone3', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 'Bell worker4', 1, 1, null);
+INSERT INTO USR(id, VERSION, USERNAME, PASSWORD, ROLE_ID, FIRST_NAME, IS_IDENTIFIED, OFFICE_ID, CITIZENSHIP_ID)
+VALUES (1, 1, 'Someone', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 1, 'Bell worker', 1, 1, 1),
+       (2, 1, 'Someone1', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 2, 'Bell worker2', 1, 1, 1),
+       (3, 1, 'Someone2', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 3, 'Bell worker3', 1, 1, null),
+       (4, 1, 'Someone3', '$2a$12$SGnOUNgqPzAfTuQDjNe5aeElBuSYIgjwXpmu7.C5LtPXuw.XXnCWS', 1, 'Bell worker4', 1, 1, null);
 
 
 INSERT INTO DOCUMENT_NAME(id, VERSION, DOC_CODE, DOC_NAME)

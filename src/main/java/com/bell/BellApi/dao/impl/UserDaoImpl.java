@@ -4,6 +4,7 @@ import com.bell.BellApi.dao.UserDao;
 import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.response.UserDtoId;
 import com.bell.BellApi.model.Position;
+import com.bell.BellApi.model.SecurityUser;
 import com.bell.BellApi.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,10 +138,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getByUsername(String username){
-        TypedQuery<User> userq = entityManager.createQuery("select u from User u where u.securityUser.username=:username", User.class);
+    public SecurityUser getByUsername(String username){
+        TypedQuery<SecurityUser> userq = entityManager.createQuery("select u.securityUser from User u where u.securityUser.username=:username", SecurityUser.class);
         userq.setParameter("username", username);
-        User user = userq.getSingleResult();
+        SecurityUser user = userq.getSingleResult();
         if(user == null){
             throw new UsernameNotFoundException("User with username: " + username + " not found");
         }

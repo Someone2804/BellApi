@@ -48,8 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userFromDb = userDao.getByUsername(username);
-        return userFromDb.getSecurityUser();
+        return userDao.getByUsername(username);
     }
 
     /**
