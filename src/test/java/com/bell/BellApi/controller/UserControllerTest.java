@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@WithUserDetails("Someone2")
 @Sql(value = {"/create-schema.sql",
         "/create-data.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"/drop-schema.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
@@ -150,9 +152,11 @@ public class UserControllerTest {
     }
 
     private UserRequest createRequestObject() throws Exception{
-        UserRequest userRequest = new UserRequest(
+        return new UserRequest(
                 2L,
                 1L,
+                "Someone_e",
+                "pass",
                 "SomeWorkerFirstName",
                 "SomeWorkerSecondName",
                 "SomeWorkerMiddleName",
@@ -164,7 +168,6 @@ public class UserControllerTest {
                 new GregorianCalendar(1990, Calendar.DECEMBER, 11).getTime(),
                 "643",
                 true);
-        return userRequest;
     }
 
     private ResultActions checkResult(String url, UserRequest officeRequest) throws Exception {
