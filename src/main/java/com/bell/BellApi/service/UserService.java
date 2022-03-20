@@ -5,11 +5,12 @@ import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.request.UserRequest;
 import com.bell.BellApi.dto.user.response.UserDtoAll;
 import com.bell.BellApi.dto.user.response.UserDtoId;
+import com.bell.BellApi.model.user.User;
 
 import java.util.List;
 
 /**
- * Service for {@link com.bell.BellApi.model.User}
+ * Service for {@link User}
  */
 public interface UserService {
 

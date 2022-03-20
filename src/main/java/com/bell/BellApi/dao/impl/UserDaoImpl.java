@@ -4,12 +4,13 @@ import com.bell.BellApi.dao.UserDao;
 import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.response.UserDtoId;
 import com.bell.BellApi.model.Position;
-import com.bell.BellApi.model.SecurityUser;
-import com.bell.BellApi.model.User;
+import com.bell.BellApi.model.user.SecurityUser;
+import com.bell.BellApi.model.user.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -124,7 +125,9 @@ public class UserDaoImpl implements UserDao {
                 user.getMiddleName() == null ? "middleName" : null,
                 user.getPhone() == null ? "phone" : null,
                 "document",
-                user.getOffice() == null ? "office" : null);
+                user.getOffice() == null ? "office" : null,
+                user.getSecurityUser() == null ? "securityUser" : null,
+                "role");
 
         return fromDb;
     }

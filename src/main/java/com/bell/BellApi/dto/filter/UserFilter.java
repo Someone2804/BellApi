@@ -1,7 +1,9 @@
 package com.bell.BellApi.dto.filter;
 
+import com.bell.BellApi.model.user.User;
+
 /**
- * Filter for {@link com.bell.BellApi.model.User}
+ * Filter for {@link User}
  */
 public class UserFilter {
 

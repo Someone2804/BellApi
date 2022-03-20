@@ -1,4 +1,4 @@
-package com.bell.BellApi.model;
+package com.bell.BellApi.model.user;
 
 import com.bell.BellApi.model.role.Role;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,10 +38,9 @@ public class SecurityUser implements UserDetails {
     public SecurityUser() {
     }
 
-    public SecurityUser(String username, String password, Role role) {
+    public SecurityUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     @Override
@@ -62,7 +61,7 @@ public class SecurityUser implements UserDetails {
         this.password = password;
     }
 
-    public void setRoles(Role role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

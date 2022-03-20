@@ -1,5 +1,6 @@
 package com.bell.BellApi.model;
 
+import com.bell.BellApi.model.user.User;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 

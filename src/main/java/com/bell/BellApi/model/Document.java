@@ -1,6 +1,8 @@
 package com.bell.BellApi.model;
 
 
+import com.bell.BellApi.model.user.User;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

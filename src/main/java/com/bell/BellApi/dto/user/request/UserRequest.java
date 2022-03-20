@@ -1,7 +1,7 @@
 package com.bell.BellApi.dto.user.request;
 
-import com.bell.BellApi.model.Document;
-import com.bell.BellApi.model.User;
+import com.bell.BellApi.model.user.SecurityUser;
+import com.bell.BellApi.model.user.User;
 
 import java.util.Date;
 
@@ -13,6 +13,10 @@ public class UserRequest {
     private Long id;
 
     private Long officeId;
+
+    private String username;
+
+    private String password;
 
     private String firstName;
 
@@ -36,9 +40,11 @@ public class UserRequest {
 
     private boolean isIdentified;
 
-    public UserRequest(Long id, Long officeId, String firstName, String secondName, String middleName, String position, String phone, String docName, String docCode, String docNumber, Date docDate, String citizenshipCode, boolean isIdentified) {
+    public UserRequest(Long id, Long officeId, String username, String password, String firstName, String secondName, String middleName, String position, String phone, String docName, String docCode, String docNumber, Date docDate, String citizenshipCode, boolean isIdentified) {
         this.id = id;
         this.officeId = officeId;
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.middleName = middleName;
@@ -66,6 +72,22 @@ public class UserRequest {
 
     public void setOfficeId(Long officeId) {
         this.officeId = officeId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -159,9 +181,15 @@ public class UserRequest {
     /**
      * Validate fields for save
      */
-    public void validateForSave(){
-        if(getOfficeId() == null){
+    public void validateForSave() {
+        if (getOfficeId() == null) {
             throw new IllegalStateException("Missed required parameter officeId");
+        }
+        if (isNullOrEmpty(getUsername())) {
+            throw new IllegalStateException("Missed required parameter username");
+        }
+        if (isNullOrEmpty(getPassword())) {
+            throw new IllegalStateException("Missed required parameter password");
         }
         validateFields();
     }
@@ -169,53 +197,71 @@ public class UserRequest {
     /**
      * Validate fields for update
      */
-    public void validateForUpdate(){
-        if(getId() == null){
+    public void validateForUpdate() {
+        if (getId() == null) {
             throw new IllegalStateException("Missed required parameter id");
         }
         validateFields();
     }
 
     /**
-     * Validate document if exist
+     * Validate document
+     */
+    public void validateDocument() {
+        if (getDocDate() == null) {
+            throw new IllegalStateException("Missed required parameter docDate");
+        }
+        if (isNullOrEmpty(getDocNumber())) {
+            throw new IllegalStateException("Missed required parameter docNumber");
+        }
+    }
+
+    /**
+     * Check if document exist
+     *
      * @return true if exist
      */
-    public boolean validateDocument() {
-        if (getDocCode() != null || getDocName() != null) {
-            if (getDocDate() == null) {
-                throw new IllegalStateException("Missed required parameter docDate");
-            }
-            if (isNullOrEmpty(getDocNumber())) {
-                throw new IllegalStateException("Missed required parameter docNumber");
-            }
-            return true;
-        }
-        return false;
+    public boolean isDocumentExist() {
+        return getDocCode() != null || getDocName() != null;
     }
 
     /**
      * Check if citizenship exist
+     *
      * @return true is exist
      */
-    public boolean isCitizenshipExist(){
+    public boolean isCitizenshipExist() {
         return !isNullOrEmpty(getCitizenshipCode());
     }
 
-    /**
-     * Fills document
-     * @param document
-     */
-    public void fillDocument(Document document){
-        document.setDocDate(getDocDate());
-        document.setDocNumber(getDocNumber());
+    private void validateFields() {
+        if (isNullOrEmpty(getFirstName())) {
+            throw new IllegalStateException("Missed required parameter firstName");
+        }
+        if (isNullOrEmpty(getPosition())) {
+            throw new IllegalStateException("Missed required parameter position");
+        }
+        if (getFirstName().length() > 50) {
+            throw new IllegalStateException("Max characters for firstName is 50");
+        }
+        if (!isNullOrEmpty(getSecondName()) && getSecondName().length() > 50) {
+            throw new IllegalStateException("Max characters for secondName is 50");
+        }
+        if (!isNullOrEmpty(getMiddleName()) && getMiddleName().length() > 50) {
+            throw new IllegalStateException("Max characters for middleName is 50");
+        }
+        if (!isNullOrEmpty(getPhone()) && getPhone().length() > 30) {
+            throw new IllegalStateException("Max characters for phone is 30");
+        }
     }
 
     /**
      * Map DTO to entity
+     *
      * @param userRequest
      * @return
      */
-    public static User mapToEntity(UserRequest userRequest){
+    public static User mapToEntity(UserRequest userRequest) {
         User user = new User();
         user.setId(userRequest.getId());
         user.setFirstName(userRequest.getFirstName());
@@ -226,28 +272,7 @@ public class UserRequest {
         return user;
     }
 
-    private void validateFields(){
-        if(isNullOrEmpty(getFirstName())){
-            throw new IllegalStateException("Missed required parameter firstName");
-        }
-        if(isNullOrEmpty(getPosition())){
-            throw new IllegalStateException("Missed required parameter position");
-        }
-        if(getFirstName().length() > 50){
-            throw new IllegalStateException("Max characters for firstName is 50");
-        }
-        if(!isNullOrEmpty(getSecondName()) && getSecondName().length() > 50){
-            throw new IllegalStateException("Max characters for secondName is 50");
-        }
-        if(!isNullOrEmpty(getMiddleName()) && getMiddleName().length() > 50){
-            throw new IllegalStateException("Max characters for middleName is 50");
-        }
-        if(!isNullOrEmpty(getPhone()) && getPhone().length() > 30){
-            throw new IllegalStateException("Max characters for phone is 30");
-        }
-    }
-
-    private static boolean isNullOrEmpty(String s){
+    private static boolean isNullOrEmpty(String s) {
         return s == null || s.isBlank();
     }
 }

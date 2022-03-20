@@ -2,8 +2,8 @@ package com.bell.BellApi.dao;
 
 import com.bell.BellApi.dto.filter.UserFilter;
 import com.bell.BellApi.dto.user.response.UserDtoId;
-import com.bell.BellApi.model.SecurityUser;
-import com.bell.BellApi.model.User;
+import com.bell.BellApi.model.user.SecurityUser;
+import com.bell.BellApi.model.user.User;
 
 import java.util.List;
 

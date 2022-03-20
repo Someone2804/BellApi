@@ -1,7 +1,7 @@
 package com.bell.BellApi.model.role;
 
 
-import com.bell.BellApi.model.User;
+import com.bell.BellApi.model.user.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

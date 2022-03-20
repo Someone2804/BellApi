@@ -1,4 +1,9 @@
-package com.bell.BellApi.model;
+package com.bell.BellApi.model.user;
+
+import com.bell.BellApi.model.Country;
+import com.bell.BellApi.model.Document;
+import com.bell.BellApi.model.Office;
+import com.bell.BellApi.model.Position;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -125,6 +130,10 @@ public class User {
 
     public SecurityUser getSecurityUser() {
         return securityUser;
+    }
+
+    public void setSecurityUser(SecurityUser securityUser) {
+        this.securityUser = securityUser;
     }
 
     /**

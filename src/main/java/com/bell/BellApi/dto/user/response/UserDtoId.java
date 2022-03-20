@@ -1,6 +1,6 @@
 package com.bell.BellApi.dto.user.response;
 
-import com.bell.BellApi.model.User;
+import com.bell.BellApi.model.user.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
