@@ -1,9 +1,9 @@
-## Homework project for Bell Integrator
+##  Modified homework project for Bell Integrator
 ### Info
 
 DB    - jdbc:h2:mem:bellApi_db
 
-Stack - jdbc/jpa/h2/boot
+Stack - jdbc/jpa/h2/boot/security
 
 Port  - 8080
 
